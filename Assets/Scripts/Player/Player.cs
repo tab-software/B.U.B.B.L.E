@@ -50,5 +50,11 @@ public class Player : MonoBehaviour
                 this.GetComponent<Transform>().eulerAngles = new Vector3(0f, 0f, this.GetComponent<Transform>().eulerAngles.z + Time.deltaTime * this.rotationVelocity);
             }
         }
+
+        Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.GetComponent<Transform>().Find("Arm").GetComponent<Transform>().position;
+
+        float newAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        this.GetComponent<Transform>().Find("Arm").GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, newAngle + (float)90);
     }
 }
