@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
         float Xmovement = Input.GetAxis("Horizontal");
 
         this.GetComponent<Transform>().position = new Vector3(this.GetComponent<Transform>().position.x,
-                                                              this.initialYPosition + swimmingEffectAmplitude*(float)Math.Cos(2.0*Math.PI*swimmingEffectFrecuency*Time.time),
+                                                              this.initialYPosition + swimmingEffectAmplitude*(float)Math.Sin(2.0*Math.PI*swimmingEffectFrecuency*Time.time),
                                                               this.GetComponent<Transform>().position.z);
 
         this.angle = transform.eulerAngles.z;
@@ -51,10 +51,18 @@ public class Player : MonoBehaviour
             }
         }
 
-        Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.GetComponent<Transform>().Find("Arm").GetComponent<Transform>().position;
+        Vector2 direction = GameObject.Find("Camera").GetComponent<Camera>().ScreenToWorldPoint(Input.mousePosition) - this.GetComponent<Transform>().Find("Arm").GetComponent<Transform>().position;
 
         float newAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         this.GetComponent<Transform>().Find("Arm").GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, newAngle + (float)90);
+    }
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if(col.gameObject.tag == "TRASH" || col.gameObject.tag == "FISH")
+        {
+            Destroy(col.gameObject);
+            GameObject.Find("Camera").GetComponent<TCamera>().ApplyEffect("HSHAKE");
+        }
     }
 }
