@@ -30,7 +30,7 @@ public class BubbleableObject : MonoBehaviour
             this.bubbleObject.GetComponent<SpriteRenderer>().color = new Vector4(this.gameObject.GetComponent<SpriteRenderer>().color.r,
                                                                                this.gameObject.GetComponent<SpriteRenderer>().color.g,
                                                                                this.gameObject.GetComponent<SpriteRenderer>().color.b,
-                                                                               1.0f-Mathf.Min(((Time.time-this.bubbledAt)/this.disappearsIn), 1.0f));
+                                                                               0.40f-0.4f*Mathf.Min(((Time.time-this.bubbledAt)/this.disappearsIn), 1.0f));
         }
         if(this.bubbled)
             this.lastFrameAreBubbled = true;

@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
 
     private float eyesDist = 0.1f;
     private Vector2 initialPosition;
+    public float rateFirePerSecond = 2.0f;
+    private float lastShoot = 0.0f;
 
     private void Start()
     {
@@ -77,8 +79,9 @@ public class Player : MonoBehaviour
 
     private void shotsUpdate(float leftAngle, float rightAngle)
     {
-        if(Input.GetMouseButton(0))
+        if(Input.GetMouseButton(0) && Time.time > (this.lastShoot + (1.0/this.rateFirePerSecond)))
         {
+            this.lastShoot = Time.time;
             Instantiate(this.bubbles[UnityEngine.Random.Range(0, this.bubbles.Count)], this.leftShootPoint.transform.position, Quaternion.Euler(0, 0, leftAngle));
             Instantiate(this.bubbles[UnityEngine.Random.Range(0, this.bubbles.Count)], this.rightShootPoint.transform.position, Quaternion.Euler(0, 0, rightAngle));
         }
