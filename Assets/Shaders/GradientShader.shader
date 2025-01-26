@@ -2,8 +2,8 @@ Shader "Unlit/GradientShader"
 {
     Properties
     {
-        _ColorA ("Color A", Color) = (1, 0, 0, 1) // Rojo
-        _ColorB ("Color B", Color) = (0, 0, 1, 1) // Azul
+        _ColorA ("Color A", Color) = (1, 0, 0, 1)
+        _ColorB ("Color B", Color) = (0, 0, 1, 1)
         _YMin ("Y Min", Float) = 0.0
         _YMax ("Y Max", Float) = 1.0
     }
