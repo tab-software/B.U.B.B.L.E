@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class Player : MonoBehaviour
     private Vector2 initialPosition;
     public float rateFirePerSecond = 2.0f;
     private float lastShoot = 0.0f;
+    private bool hitted = false;
 
     private void Start()
     {
@@ -89,22 +91,30 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        this.smiwingEffect();
-        this.movement();
-        float rAngle = this.pointArmToMouse("RArm");
-        float lAngle = this.pointArmToMouse("LArm");
-        this.shotsUpdate(lAngle, rAngle);
-        this.animateEyes();
+        if(!this.hitted)
+        {
+            this.smiwingEffect();
+            this.movement();
+            float rAngle = this.pointArmToMouse("RArm");
+            float lAngle = this.pointArmToMouse("LArm");
+            this.shotsUpdate(lAngle, rAngle);
+            this.animateEyes();
+        }
+        if(!GameObject.Find("Fade").GetComponent<Fade>().running && this.hitted)
+        {
+            SceneManager.LoadScene("main");
+        }
     }
     private void OnCollide(GameObject gameObject)
     {
-        
         if(gameObject.tag == "TRASH" || gameObject.tag == "FISH")
         {
-            if(!gameObject.GetComponent<BubbleableObject>().bubbled)
+            if(!gameObject.GetComponent<BubbleableObject>().bubbled && !this.hitted)
             {
                 Destroy(gameObject);
                 GameObject.Find("Camera").GetComponent<TCamera>().ApplyEffect("HSHAKE");
+                GameObject.Find("Fade").GetComponent<Fade>().fade();
+                this.hitted = true;
             }
         }
     }

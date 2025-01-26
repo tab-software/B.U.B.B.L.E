@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\Parallax\Parallax.cs" />
     <Compile Include="Assets\Scripts\SuperFish\SuperFish.cs" />
     <Compile Include="Assets\Scripts\InkBlotEffect\InkBlotEffect.cs" />
+    <Compile Include="Assets\Scripts\Video\Video.cs" />
     <Compile Include="Assets\Scripts\Camera\TCamera.cs" />
     <Compile Include="Assets\Scripts\OctopusShotArea\OctopusShotArea.cs" />
     <Compile Include="Assets\Scripts\TitleText\TitleText.cs" />
