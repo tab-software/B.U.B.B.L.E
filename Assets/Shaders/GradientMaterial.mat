@@ -47,7 +47,7 @@ Material:
     - _ZWrite: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorA: {r: 0.1254902, g: 0.20392157, b: 0.32941177, a: 1}
+    - _ColorA: {r: 0.1254902, g: 0.21176471, b: 0.34117648, a: 1}
     - _ColorB: {r: 0, g: 0, b: 0, a: 1}
     - _ColorBottom: {r: 0, g: 0, b: 1, a: 1}
     - _ColorTop: {r: 1, g: 0, b: 0, a: 1}
