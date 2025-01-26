@@ -6,6 +6,7 @@ TagManager:
   tags:
   - TRASH
   - FISH
+  - BUBBLE
   layers:
   - Default
   - TransparentFX

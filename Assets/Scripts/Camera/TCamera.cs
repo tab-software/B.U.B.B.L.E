@@ -17,12 +17,12 @@ public class TCamera : MonoBehaviour
 
     private Effect appliedEffect;
 
-    void Start()
+    private void Start()
     {
         this.initialPosition = this.GetComponent<Transform>().position;
     }
 
-    void Update()
+    private void Update()
     {
         if(amplitude > 0.0f)
         {
