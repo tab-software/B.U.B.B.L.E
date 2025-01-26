@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -8,7 +9,7 @@ public class Player : MonoBehaviour
     public float maxAngleRotation = 30.0f;
     public float swimmingEffectAmplitude = 1.0f; 
     public float swimmingEffectFrecuency = 1.0f; 
-
+    public List<GameObject> bubbles;
     private float angle = 0.0f;
 
     private float eyesDist = 0.1f;
@@ -68,11 +69,6 @@ public class Player : MonoBehaviour
     {
         Vector2 direction = GameObject.Find("Camera").GetComponent<Camera>().ScreenToWorldPoint(Input.mousePosition) - this.GetComponent<Transform>().position;
         float angleInRadians = Mathf.Atan2(direction.y, direction.x);
-        float angleInDegrees = angleInRadians * Mathf.Rad2Deg;
-        Debug.Log("a");
-        Debug.Log(angleInDegrees);
-        Debug.Log("b");
-        Debug.Log(this.transform.GetComponent<Transform>().Find("PlayerSprite/Eyes/EyesSprite").localPosition);
         this.transform.GetComponent<Transform>().Find("PlayerSprite/Eyes/EyesSprite").localPosition = new Vector3(this.eyesDist*(float)Math.Cos(angleInRadians), this.eyesDist*(float)Math.Sin(angleInRadians), 0);
     }
 
