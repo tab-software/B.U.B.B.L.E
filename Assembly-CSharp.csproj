@@ -65,8 +65,10 @@
     <Analyzer Include="D:\Editor\6000.0.35f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\InkBlotBullet\InkBlotBullet.cs" />
     <Compile Include="Assets\Scripts\Parallax\Parallax.cs" />
     <Compile Include="Assets\Scripts\SuperFish\SuperFish.cs" />
+    <Compile Include="Assets\Scripts\InkBlotEffect\InkBlotEffect.cs" />
     <Compile Include="Assets\Scripts\Camera\TCamera.cs" />
     <Compile Include="Assets\Scripts\TitleText\TitleText.cs" />
     <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
