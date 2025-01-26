@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -71,6 +72,10 @@ public class GameManager : MonoBehaviour
             {
                 showedSuperFish = true;
                 GameObject.Find("SuperFish").GetComponent<SuperFish>().directionY = 1.0f;
+            }
+            if(progress > 1.0)
+            {
+                SceneManager.LoadScene("Final");
             }
         }
     }
