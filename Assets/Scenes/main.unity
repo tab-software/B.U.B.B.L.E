@@ -144,7 +144,7 @@ Transform:
   m_GameObject: {fileID: 56238813}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.9, y: 0.3, z: 0}
+  m_LocalPosition: {x: -0.68, y: 0.52, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -615,8 +615,8 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1689970418}
-  - {fileID: 782393962}
   - {fileID: 1941829530}
+  - {fileID: 782393962}
   - {fileID: 56238814}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -810,7 +810,7 @@ Transform:
   m_GameObject: {fileID: 782393961}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.9, y: 0.3, z: 0}
+  m_LocalPosition: {x: 0.68, y: 0.52, z: 0}
   m_LocalScale: {x: 0.3, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -878,7 +878,7 @@ Transform:
   m_GameObject: {fileID: 965730484}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.65, z: 1}
+  m_LocalPosition: {x: 0.7333334, y: -0.87, z: 1}
   m_LocalScale: {x: 0.3, y: 0.09, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -952,6 +952,7 @@ GameObject:
   - component: {fileID: 1021485077}
   - component: {fileID: 1021485076}
   - component: {fileID: 1021485078}
+  - component: {fileID: 1021485079}
   m_Layer: 0
   m_Name: Fish
   m_TagString: FISH
@@ -1105,6 +1106,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: 2
+--- !u!95 &1021485079
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1021485073}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cf0316b4dd6a32f4eb80dd6e8fa7ef94, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1108961260
 GameObject:
   m_ObjectHideFlags: 0
@@ -1345,6 +1368,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabs:
   - {fileID: 1830906578365068757, guid: ff0e87bf7d57a8e4582cd4982eceb9d6, type: 3}
+  - {fileID: 1830906578365068757, guid: fd96dfc30e764b042a9ad3ef15236e31, type: 3}
   timeBetweenSpawn: 1
 --- !u!1 &1512538236
 GameObject:
@@ -1713,7 +1737,7 @@ SpriteRenderer:
   m_Size: {x: 16.4, y: 23.603092}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1950300787
@@ -1976,7 +2000,7 @@ Transform:
   m_GameObject: {fileID: 2144360612}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.65, z: 0}
+  m_LocalPosition: {x: -0.22000003, y: -0.87, z: 0}
   m_LocalScale: {x: 0.09, y: 0.09, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

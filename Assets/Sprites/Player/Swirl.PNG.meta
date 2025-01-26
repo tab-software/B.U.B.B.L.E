@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -103,10 +103,10 @@ TextureImporter:
       name: Swirl_0
       rect:
         serializedVersion: 2
-        x: 106
-        y: 485
-        width: 1478
-        height: 1265
+        x: 186
+        y: 3355
+        width: 1283
+        height: 1201
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -117,6 +117,50 @@ TextureImporter:
       bones: []
       spriteID: ff4f56f3b300842c0800000000000000
       internalID: -4447304377561647873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Swirl_1
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 1828
+        width: 1283
+        height: 1201
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c247b593e60dcb48a873e323f300c18
+      internalID: -940302077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Swirl_2
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 81
+        width: 1479
+        height: 1265
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2588869e8faf97341b97cdbdafff6783
+      internalID: 835205925
       vertices: []
       indices: 
       edges: []
@@ -136,6 +180,8 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Swirl_0: -4447304377561647873
+      Swirl_1: -940302077
+      Swirl_2: 835205925
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
