@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrashSpawn : MonoBehaviour
+public class Spawner : MonoBehaviour
 {
     public List<GameObject> prefabs;
     public float timeBetweenSpawn = 1.0f;
@@ -15,7 +15,7 @@ public class TrashSpawn : MonoBehaviour
         if(Time.time > (lastSpawn + timeBetweenSpawn))
         {
             Bounds bounds = this.GetComponent<BoxCollider2D>().bounds;
-            Instantiate(prefabs[Random.Range(0, this.prefabs.Count)], new Vector2(Random.Range(bounds.min.x, bounds.max.x), this.GetComponent<Transform>().position.y), new Quaternion(0,0,0,0));
+            Instantiate(prefabs[Random.Range(0, this.prefabs.Count)], new Vector2(Random.Range(bounds.min.x, bounds.max.x), Random.Range(bounds.min.y, bounds.max.y)), new Quaternion(0,0,0,0));
             lastSpawn = Time.time;
         }        
     }

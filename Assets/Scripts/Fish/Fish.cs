@@ -9,5 +9,13 @@ public class Fish : MonoBehaviour
     {
         Vector2 direccion = (GameObject.Find("Player").GetComponent<Transform>().position - this.GetComponent<Transform>().position).normalized;
         this.GetComponent<Rigidbody2D>().linearVelocity = direccion * velocity;
+        if(this.GetComponent<Transform>().position.x < GameObject.Find("Player").GetComponent<Transform>().position.x)
+        {
+            this.GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else
+        {
+            this.GetComponent<SpriteRenderer>().flipX = false;
+        }
     }
 }
