@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\SuperFish\SuperFish.cs" />
     <Compile Include="Assets\Scripts\InkBlotEffect\InkBlotEffect.cs" />
     <Compile Include="Assets\Scripts\Camera\TCamera.cs" />
+    <Compile Include="Assets\Scripts\OctopusShotArea\OctopusShotArea.cs" />
     <Compile Include="Assets\Scripts\TitleText\TitleText.cs" />
     <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
     <Compile Include="Assets\Scripts\Bubble\Bubble.cs" />

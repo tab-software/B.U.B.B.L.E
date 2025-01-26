@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class InkBlot : MonoBehaviour
@@ -24,10 +25,7 @@ public class InkBlot : MonoBehaviour
                 this.GetComponent<SpriteRenderer>().color.b,
                 this.GetComponent<SpriteRenderer>().color.a - velocity * Time.deltaTime * 0.1f
             );
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            this.transform.localScale = new Vector3(0,0,1);
-            this.GetComponent<SpriteRenderer>().color = new Vector4(1,1,1,1);
-        }
+        if(this.GetComponent<SpriteRenderer>().color.a <= 0.0f)
+            Destroy(this.gameObject);
     }
 }
