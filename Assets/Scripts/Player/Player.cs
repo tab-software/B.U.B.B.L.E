@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     public float swimmingEffectAmplitude = 1.0f; 
     public float swimmingEffectFrecuency = 1.0f; 
     public List<GameObject> bubbles;
+    public GameObject leftShootPoint;
+    public GameObject rightShootPoint;
     private float angle = 0.0f;
 
     private float eyesDist = 0.1f;
@@ -20,12 +22,13 @@ public class Player : MonoBehaviour
         this.initialPosition = this.GetComponent<Transform>().position;
     }
 
-    private void pointArmToMouse(String nameArmObject)
+    private float pointArmToMouse(String nameArmObject)
     {
         Vector2 direction = GameObject.Find("Camera").GetComponent<Camera>().ScreenToWorldPoint(Input.mousePosition) - this.GetComponent<Transform>().Find(nameArmObject).GetComponent<Transform>().position;
 
-        float newAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        this.GetComponent<Transform>().Find(nameArmObject).GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, newAngle + (float)90);
+        float newAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + (float)90;
+        this.GetComponent<Transform>().Find(nameArmObject).GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, newAngle);
+        return newAngle;
     }
 
     private void movement()
@@ -72,12 +75,22 @@ public class Player : MonoBehaviour
         this.transform.GetComponent<Transform>().Find("PlayerSprite/Eyes/EyesSprite").localPosition = new Vector3(this.eyesDist*(float)Math.Cos(angleInRadians), this.eyesDist*(float)Math.Sin(angleInRadians), 0);
     }
 
+    private void shotsUpdate(float leftAngle, float rightAngle)
+    {
+        if(Input.GetMouseButton(0))
+        {
+            Instantiate(this.bubbles[UnityEngine.Random.Range(0, this.bubbles.Count)], this.leftShootPoint.transform.position, Quaternion.Euler(0, 0, leftAngle));
+            Instantiate(this.bubbles[UnityEngine.Random.Range(0, this.bubbles.Count)], this.rightShootPoint.transform.position, Quaternion.Euler(0, 0, rightAngle));
+        }
+    }
+
     private void Update()
     {
         this.smiwingEffect();
         this.movement();
-        this.pointArmToMouse("RArm");
-        this.pointArmToMouse("LArm");
+        float rAngle = this.pointArmToMouse("RArm");
+        float lAngle = this.pointArmToMouse("LArm");
+        this.shotsUpdate(lAngle, rAngle);
         this.animateEyes();
     }
     private void OnCollide(GameObject gameObject)
@@ -85,8 +98,11 @@ public class Player : MonoBehaviour
         
         if(gameObject.tag == "TRASH" || gameObject.tag == "FISH")
         {
-            Destroy(gameObject);
-            GameObject.Find("Camera").GetComponent<TCamera>().ApplyEffect("HSHAKE");
+            if(!gameObject.GetComponent<BubbleableObject>().bubbled)
+            {
+                Destroy(gameObject);
+                GameObject.Find("Camera").GetComponent<TCamera>().ApplyEffect("HSHAKE");
+            }
         }
     }
     private void OnCollisionEnter2D(Collision2D col)
