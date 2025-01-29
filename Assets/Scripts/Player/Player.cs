@@ -113,8 +113,8 @@ public class Player : MonoBehaviour
             {
                 Destroy(gameObject);
                 GameObject.Find("Camera").GetComponent<TCamera>().ApplyEffect("HSHAKE");
-                // GameObject.Find("Fade").GetComponent<Fade>().fade();
-                // this.hitted = true;
+                GameObject.Find("Fade").GetComponent<Fade>().fade();
+                this.hitted = true;
             }
         }
     }
