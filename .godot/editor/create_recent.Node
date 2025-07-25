@@ -1,8 +1,9 @@
+StaticBody2D
+CollisionShape2D
 RichTextLabel
 TextEdit
 Node2D
 Sprite2D
-CollisionShape2D
 RigidBody2D
 AnimatedSprite2D
 Node
