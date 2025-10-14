@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cuywkaaror6yc"]
+[gd_scene load_steps=21 format=3 uid="uid://cuywkaaror6yc"]
 
 [ext_resource type="Script" uid="uid://ddy82oyew08n0" path="res://Assets/Scripts/Player/Player.gd" id="1_f8coj"]
 [ext_resource type="Texture2D" uid="uid://ckpftqxovtgmo" path="res://Assets/Sprites/Player/Body.PNG" id="1_wn48o"]
@@ -20,6 +20,9 @@ metadata/_snap_count = 30
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_423fd"]
 gradient = SubResource("Gradient_gyq30")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ttgh6"]
+size = Vector2(643.933, 0.0824152)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t783k"]
 atlas = ExtResource("6_xws5s")
@@ -61,6 +64,20 @@ position = Vector2(577.489, 323.245)
 rotation = 1.57079
 scale = Vector2(2.53132, 1152.7)
 texture = SubResource("GradientTexture1D_423fd")
+
+[node name="LLIMIT" type="StaticBody2D" parent="Background"]
+position = Vector2(-0.0980459, 0.441129)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/LLIMIT"]
+position = Vector2(-4.74073, 0.0125744)
+shape = SubResource("RectangleShape2D_ttgh6")
+
+[node name="RLIMIT" type="StaticBody2D" parent="Background"]
+position = Vector2(-0.0954507, -0.467174)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/RLIMIT"]
+position = Vector2(-4.74074, 0.00997651)
+shape = SubResource("RectangleShape2D_ttgh6")
 
 [node name="Parallax" type="Node2D" parent="."]
 
@@ -148,15 +165,15 @@ bbcode_enabled = true
 text = "[center]B . U . B . B . L . E ."
 
 [node name="Box" type="Sprite2D" parent="MainTitleScreen"]
-position = Vector2(299, 465)
+position = Vector2(304, 497.904)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("9_xl787")
 
 [node name="desc2" type="RichTextLabel" parent="MainTitleScreen"]
-offset_left = 136.0
-offset_top = 411.0
-offset_right = 334.0
-offset_bottom = 465.0
+offset_left = 141.0
+offset_top = 443.904
+offset_right = 339.0
+offset_bottom = 497.904
 rotation = -0.540621
 theme_override_colors/default_color = Color(0.588235, 0.588235, 0.588235, 1)
 theme_override_font_sizes/normal_font_size = 19
