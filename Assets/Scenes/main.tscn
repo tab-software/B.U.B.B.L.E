@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cuywkaaror6yc"]
+[gd_scene load_steps=36 format=3 uid="uid://cuywkaaror6yc"]
 
 [ext_resource type="Script" uid="uid://bkg673umy4qxk" path="res://Assets/Scripts/Main/main.gd" id="1_4qkp8"]
 [ext_resource type="Script" uid="uid://ddy82oyew08n0" path="res://Assets/Scripts/Player/Player.gd" id="1_f8coj"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://4n71nink58fa" path="res://Assets/Sprites/Parallax/1.PNG" id="10_n6l0p"]
 [ext_resource type="PackedScene" uid="uid://i4mxkgvm4obq" path="res://Assets/Prefabs/Trash/Box.tscn" id="14_uop3n"]
 [ext_resource type="Texture2D" uid="uid://bg6ws8wpp5iq0" path="res://Assets/Sprites/UI/Progressbar.png" id="14_uq7jr"]
+[ext_resource type="Shader" uid="uid://b55xkd5l8kenu" path="res://Assets/Shaders/ParallaxEffect.gdshader" id="15_ltoj3"]
 [ext_resource type="Script" uid="uid://srf6c1ff2s5g" path="res://Assets/Scripts/Mobile/Mobile.gd" id="15_tm25p"]
 [ext_resource type="Texture2D" uid="uid://bl82s702hbp6q" path="res://Assets/Sprites/UI/Mobile/Circle.png" id="15_uq7jr"]
 [ext_resource type="Texture2D" uid="uid://ccqywjbyknnns" path="res://Assets/Sprites/UI/Mobile/Circumference.png" id="16_ltoj3"]
@@ -72,63 +73,32 @@ size = Vector2(798, 54)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4qkp8"]
 size = Vector2(20, 535)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qscjt"]
+shader = ExtResource("15_ltoj3")
+shader_parameter/speed = -0.012
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tm25p"]
+shader = ExtResource("15_ltoj3")
+shader_parameter/speed = -0.025
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ccmul"]
+shader = ExtResource("15_ltoj3")
+shader_parameter/speed = -0.05
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cun2r"]
+shader = ExtResource("15_ltoj3")
+shader_parameter/speed = 0.013
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nb11o"]
+shader = ExtResource("15_ltoj3")
+shader_parameter/speed = 0.025
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xcy2v"]
+shader = ExtResource("15_ltoj3")
+shader_parameter/speed = 0.05
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_4qkp8")
-
-[node name="Parallax" type="Node2D" parent="."]
-rotation = 3.14159
-scale = Vector2(1.8, 819.779)
-
-[node name="3" type="Parallax2D" parent="Parallax"]
-z_index = 3
-rotation = -1.56794
-scale = Vector2(0.000867532, 0.395051)
-skew = -0.00285721
-scroll_offset = Vector2(-310.555, -0.413529)
-
-[node name="Sprite2D" type="Sprite2D" parent="Parallax/3"]
-position = Vector2(0, -1)
-texture = ExtResource("8_ywrwh")
-
-[node name="Srpite2D2" type="Sprite2D" parent="Parallax/3"]
-texture_repeat = 2
-position = Vector2(-2.04245, -54.5945)
-rotation = -3.14159
-texture = ExtResource("8_ywrwh")
-region_enabled = true
-region_rect = Rect2(0, 1301, 4096, 413)
-
-[node name="2" type="Parallax2D" parent="Parallax"]
-z_index = 3
-rotation = -1.56794
-scale = Vector2(0.000867532, 0.395051)
-skew = -0.00285721
-scroll_offset = Vector2(-310.555, -0.413529)
-
-[node name="Sprite2D" type="Sprite2D" parent="Parallax/2"]
-position = Vector2(0, -1)
-texture = ExtResource("9_3r2cu")
-
-[node name="Srpite2D2" type="Sprite2D" parent="Parallax/2"]
-position = Vector2(2.90002, -52.8023)
-rotation = -3.14159
-texture = ExtResource("9_3r2cu")
-
-[node name="1" type="Parallax2D" parent="Parallax"]
-z_index = 3
-rotation = -1.56794
-scale = Vector2(0.000867532, 0.395051)
-skew = -0.00285721
-scroll_offset = Vector2(-310.555, -0.413529)
-
-[node name="Sprite2D" type="Sprite2D" parent="Parallax/1"]
-position = Vector2(0, -1)
-texture = ExtResource("10_n6l0p")
-
-[node name="Srpite2D2" type="Sprite2D" parent="Parallax/1"]
-position = Vector2(2.90002, -52.8023)
-rotation = -3.14159
-texture = ExtResource("10_n6l0p")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(577.489, 323.245)
@@ -151,6 +121,7 @@ position = Vector2(-4.74074, 0.00997651)
 shape = SubResource("RectangleShape2D_ttgh6")
 
 [node name="Player" type="CharacterBody2D" parent="."]
+z_index = 4096
 position = Vector2(564, 339)
 scale = Vector2(0.7, 0.7)
 script = ExtResource("1_f8coj")
@@ -333,6 +304,93 @@ z_index = 12
 position = Vector2(983, 538)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("16_ltoj3")
+
+[node name="ParallaxEffect" type="Node2D" parent="."]
+position = Vector2(567, 331)
+
+[node name="L" type="Node2D" parent="ParallaxEffect"]
+
+[node name="L3" type="TextureRect" parent="ParallaxEffect/L"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_qscjt")
+offset_left = 281.0
+offset_top = -1051.0
+offset_right = 4377.0
+offset_bottom = 663.0
+rotation = 1.57079
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_ywrwh")
+expand_mode = 2
+stretch_mode = 1
+
+[node name="L2" type="TextureRect" parent="ParallaxEffect/L"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_tm25p")
+offset_left = 289.0
+offset_top = -1053.0
+offset_right = 4385.0
+offset_bottom = 661.0
+rotation = 1.57079
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_3r2cu")
+expand_mode = 2
+stretch_mode = 1
+
+[node name="L1" type="TextureRect" parent="ParallaxEffect/L"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_ccmul")
+offset_left = 289.0
+offset_top = -1053.0
+offset_right = 4385.0
+offset_bottom = 661.0
+rotation = 1.57079
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_n6l0p")
+expand_mode = 2
+stretch_mode = 1
+
+[node name="R" type="Node2D" parent="ParallaxEffect"]
+position = Vector2(19, 6)
+rotation = 3.14159
+
+[node name="L3" type="TextureRect" parent="ParallaxEffect/R"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_cun2r")
+offset_left = 281.0
+offset_top = -1051.0
+offset_right = 4377.0
+offset_bottom = 663.0
+rotation = 1.57079
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_ywrwh")
+expand_mode = 2
+stretch_mode = 1
+
+[node name="L2" type="TextureRect" parent="ParallaxEffect/R"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_nb11o")
+offset_left = 289.0
+offset_top = -1053.0
+offset_right = 4385.0
+offset_bottom = 661.0
+rotation = 1.57079
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_3r2cu")
+expand_mode = 2
+stretch_mode = 1
+
+[node name="L1" type="TextureRect" parent="ParallaxEffect/R"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_xcy2v")
+offset_left = 289.0
+offset_top = -1053.0
+offset_right = 4385.0
+offset_bottom = 661.0
+rotation = 1.57079
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_n6l0p")
+expand_mode = 2
+stretch_mode = 1
 
 [connection signal="ready" from="Player" to="Player" method="_on_ready"]
 [connection signal="body_entered" from="Player/Area2D" to="Player" method="_on_area_2d_body_entered"]

@@ -66,8 +66,6 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	position.y = screenShakeAmplitude * sin(2*PI*SCREEN_SHAKE_FREQ*Time.get_unix_time_from_system())
-	$"Parallax/3".scroll_offset.y += delta * PARALLAX_EFFECT_VEL*0.01
-	print($"Parallax/3".scroll_offset.y)
 	if onGame:
 		trashGeneration()
 		fishGeneration()

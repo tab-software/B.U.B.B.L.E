@@ -105,7 +105,7 @@ func _on_ready() -> void:
 	lastShoot = Time.get_unix_time_from_system()
 	$Sprites/Swirl.play()
 	mobileOS = (OS.get_name() == "Android") or (OS.get_name() == "iOS")
-	mobileOS = true
+	#mobileOS = true
 	if mobileOS:
 		$"../MobileUI".modulate.a = 1.0
 
