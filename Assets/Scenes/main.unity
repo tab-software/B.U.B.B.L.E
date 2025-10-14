@@ -553,7 +553,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &495588165
 Animator:
   serializedVersion: 7
@@ -864,11 +864,11 @@ MonoBehaviour:
   swimmingEffectAmplitude: 0.25
   swimmingEffectFrecuency: 0.2
   bubbles:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2746865148657103665, guid: f1a85539f8dc29b428b72b514cb774fb, type: 3}
+  - {fileID: 1941057002005209276, guid: 8d70ed5501ed050449284c2a8e627098, type: 3}
+  - {fileID: 7281389180574758942, guid: 942b227e860dc7d4fa9548afa5da456d, type: 3}
+  - {fileID: 496479053610952050, guid: 863dc0608423ca84b9e2aa7f9f398be3, type: 3}
+  - {fileID: 8429718154861816382, guid: e2b7d0e0a751d7a449ca5dd68d126132, type: 3}
 --- !u!70 &582657433
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1203,7 +1203,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &853533322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1865,7 +1865,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1407617599
 Transform:
   m_ObjectHideFlags: 0
@@ -2168,7 +2168,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1509992354
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2348,7 +2348,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1592926750
 Transform:
   m_ObjectHideFlags: 0

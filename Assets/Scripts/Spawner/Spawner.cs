@@ -6,11 +6,8 @@ public class Spawner : MonoBehaviour
     public List<GameObject> prefabs;
     public float timeBetweenSpawn = 1.0f;
     private float lastSpawn = 0.0f;
-    void Start()
-    {
-    }
 
-    void Update()
+    private void Update()
     {
         if(Time.time > (lastSpawn + timeBetweenSpawn))
         {

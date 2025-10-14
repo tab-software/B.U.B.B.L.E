@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     private float eyesDist = 0.1f;
     private Vector2 initialPosition;
 
-    void Start()
+    private void Start()
     {
         this.initialPosition = this.GetComponent<Transform>().position;
     }
@@ -58,21 +58,21 @@ public class Player : MonoBehaviour
         }
     }
 
-    void smiwingEffect()
+    private void smiwingEffect()
     {
         this.GetComponent<Transform>().position = new Vector3(this.GetComponent<Transform>().position.x,
                                                         this.initialPosition.y + swimmingEffectAmplitude*(float)Math.Sin(2.0*Math.PI*swimmingEffectFrecuency*Time.time),
                                                         this.GetComponent<Transform>().position.z);
     }
 
-    void animateEyes()
+    private void animateEyes()
     {
         Vector2 direction = GameObject.Find("Camera").GetComponent<Camera>().ScreenToWorldPoint(Input.mousePosition) - this.GetComponent<Transform>().position;
         float angleInRadians = Mathf.Atan2(direction.y, direction.x);
         this.transform.GetComponent<Transform>().Find("PlayerSprite/Eyes/EyesSprite").localPosition = new Vector3(this.eyesDist*(float)Math.Cos(angleInRadians), this.eyesDist*(float)Math.Sin(angleInRadians), 0);
     }
 
-    void Update()
+    private void Update()
     {
         this.smiwingEffect();
         this.movement();
@@ -80,7 +80,7 @@ public class Player : MonoBehaviour
         this.pointArmToMouse("LArm");
         this.animateEyes();
     }
-    void OnCollide(GameObject gameObject)
+    private void OnCollide(GameObject gameObject)
     {
         
         if(gameObject.tag == "TRASH" || gameObject.tag == "FISH")
@@ -89,11 +89,11 @@ public class Player : MonoBehaviour
             GameObject.Find("Camera").GetComponent<TCamera>().ApplyEffect("HSHAKE");
         }
     }
-    void OnCollisionEnter2D(Collision2D col)
+    private void OnCollisionEnter2D(Collision2D col)
     {
         this.OnCollide(col.gameObject);
     }
-    void OnTriggerEnter2D(Collider2D col)
+    private void OnTriggerEnter2D(Collider2D col)
     {
         this.OnCollide(col.gameObject);
     }

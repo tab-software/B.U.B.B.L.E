@@ -2,12 +2,7 @@ using UnityEngine;
 
 public class SuperFish : MonoBehaviour
 {
-    void Start()
-    {
-        
-    }
-
-    void Update()
+    private void Update()
     {
         float newPositionX = GameObject.Find("Player").GetComponent<Transform>().position.x;
         newPositionX += 0.78f;
