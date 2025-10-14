@@ -11,7 +11,7 @@ var x_movement = 0
 
 func movement(delta):
 	if not mobileOS:
-		x_movement = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+		x_movement = Input.get_action_strength("RIGHT_MOVEMENT") - Input.get_action_strength("LEFT_MOVEMENT")
 	#If mobile OS the input is managed by Mobile.gd
 
 	var angle := rotation_degrees
@@ -43,12 +43,13 @@ func smiwingEffect():
 const ANIMATION_EYES_DIST = 50
 
 func animateEyes():
-	var mouse_pos = get_viewport().get_mouse_position()
-	var direction = mouse_pos - global_position
-	var angle = direction.angle()
-	$Sprites/Head/Eyes.position = Vector2(cos(angle), sin(angle)) * ANIMATION_EYES_DIST
+	if not mobileOS:
+		var mouse_pos = get_viewport().get_mouse_position()
+		var direction = mouse_pos - global_position
+		var angle = direction.angle()
+		$Sprites/Head/Eyes.position = Vector2(cos(angle), sin(angle)) * ANIMATION_EYES_DIST
 
-const SHOOTS_PER_SECOND = 2
+const SHOOTS_PER_SECOND = 5
 const TIME_BEWEEN_SHOOTS = 1.0 / SHOOTS_PER_SECOND
 var lastShoot
 var bubblePrefab

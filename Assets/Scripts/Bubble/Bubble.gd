@@ -11,10 +11,10 @@ func _physics_process(delta):
 	if (position.distance_to(playerNode.position) > 1000) and (modulate.a != 0):
 		queue_free()
 
-
 func _on_body_entered(body: Node2D) -> void:
-	if body.get_meta("enabled") and modulate.a != 0:
-		body.set_deferred("collision_layer", 0)
+	#if body.get_meta("enabled") and modulate.a != 0:
+	if modulate.a != 0:
+		#body.set_deferred("collision_layer", 0)
 		body.set_deferred("collision_mask", 0)
 		modulate.a = 0
 		body.set_meta("enabled", false)

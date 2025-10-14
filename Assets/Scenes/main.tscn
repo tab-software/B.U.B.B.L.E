@@ -75,6 +75,61 @@ size = Vector2(20, 535)
 [node name="Main" type="Node2D"]
 script = ExtResource("1_4qkp8")
 
+[node name="Parallax" type="Node2D" parent="."]
+rotation = 3.14159
+scale = Vector2(1.8, 819.779)
+
+[node name="3" type="Parallax2D" parent="Parallax"]
+z_index = 3
+rotation = -1.56794
+scale = Vector2(0.000867532, 0.395051)
+skew = -0.00285721
+scroll_offset = Vector2(-310.555, -0.413529)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/3"]
+position = Vector2(0, -1)
+texture = ExtResource("8_ywrwh")
+
+[node name="Srpite2D2" type="Sprite2D" parent="Parallax/3"]
+texture_repeat = 2
+position = Vector2(-2.04245, -54.5945)
+rotation = -3.14159
+texture = ExtResource("8_ywrwh")
+region_enabled = true
+region_rect = Rect2(0, 1301, 4096, 413)
+
+[node name="2" type="Parallax2D" parent="Parallax"]
+z_index = 3
+rotation = -1.56794
+scale = Vector2(0.000867532, 0.395051)
+skew = -0.00285721
+scroll_offset = Vector2(-310.555, -0.413529)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/2"]
+position = Vector2(0, -1)
+texture = ExtResource("9_3r2cu")
+
+[node name="Srpite2D2" type="Sprite2D" parent="Parallax/2"]
+position = Vector2(2.90002, -52.8023)
+rotation = -3.14159
+texture = ExtResource("9_3r2cu")
+
+[node name="1" type="Parallax2D" parent="Parallax"]
+z_index = 3
+rotation = -1.56794
+scale = Vector2(0.000867532, 0.395051)
+skew = -0.00285721
+scroll_offset = Vector2(-310.555, -0.413529)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/1"]
+position = Vector2(0, -1)
+texture = ExtResource("10_n6l0p")
+
+[node name="Srpite2D2" type="Sprite2D" parent="Parallax/1"]
+position = Vector2(2.90002, -52.8023)
+rotation = -3.14159
+texture = ExtResource("10_n6l0p")
+
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(577.489, 323.245)
 rotation = 1.57079
@@ -94,44 +149,6 @@ position = Vector2(-0.0954507, -0.467174)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/RLIMIT"]
 position = Vector2(-4.74074, 0.00997651)
 shape = SubResource("RectangleShape2D_ttgh6")
-
-[node name="Parallax" type="Node2D" parent="."]
-
-[node name="Right" type="Node2D" parent="Parallax"]
-position = Vector2(856, 339)
-rotation = -1.57079
-scale = Vector2(0.4, 0.4)
-
-[node name="3" type="Sprite2D" parent="Parallax/Right"]
-position = Vector2(79, -116)
-texture = ExtResource("8_ywrwh")
-
-[node name="2" type="Sprite2D" parent="Parallax/Right"]
-position = Vector2(71, -121)
-texture = ExtResource("9_3r2cu")
-
-[node name="1" type="Sprite2D" parent="Parallax/Right"]
-z_index = 2
-position = Vector2(67, -117)
-texture = ExtResource("10_n6l0p")
-
-[node name="Left" type="Node2D" parent="Parallax"]
-position = Vector2(297, 339)
-rotation = -4.71239
-scale = Vector2(-0.4, 0.4)
-
-[node name="3" type="Sprite2D" parent="Parallax/Left"]
-position = Vector2(79, -116)
-texture = ExtResource("8_ywrwh")
-
-[node name="2" type="Sprite2D" parent="Parallax/Left"]
-position = Vector2(71, -121)
-texture = ExtResource("9_3r2cu")
-
-[node name="1" type="Sprite2D" parent="Parallax/Left"]
-z_index = 2
-position = Vector2(67, -117)
-texture = ExtResource("10_n6l0p")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(564, 339)

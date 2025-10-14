@@ -1,5 +1,3 @@
 res://Assets/Scenes/main.tscn
 res://Assets/Prefabs/Trash/Box.tscn
-res://Assets/Scripts/Bubble/Bubble.gd
-res://Assets/Scripts/Mobile/Mobile.gd
 res://Assets/Scripts/Player/Player.gd
