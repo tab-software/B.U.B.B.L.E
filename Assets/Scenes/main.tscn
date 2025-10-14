@@ -369,6 +369,7 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("16_ltoj3")
 
 [node name="ParallaxEffect" type="Node2D" parent="."]
+z_index = 9
 position = Vector2(567, 331)
 
 [node name="L" type="Node2D" parent="ParallaxEffect"]
@@ -455,13 +456,17 @@ texture = ExtResource("10_n6l0p")
 expand_mode = 2
 stretch_mode = 1
 
-[node name="Octopus" type="AnimatedSprite2D" parent="."]
-visible = false
-position = Vector2(574, 130)
+[node name="Octopus" type="Node2D" parent="."]
+position = Vector2(565, -576)
+rotation = 0.785398
 scale = Vector2(0.1, 0.1)
+script = ExtResource("27_hlqjr")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Octopus"]
+position = Vector2(40, 7340)
+scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_l2vhu")
 frame_progress = 0.382215
-script = ExtResource("27_hlqjr")
 
 [connection signal="ready" from="Player" to="Player" method="_on_ready"]
 [connection signal="body_entered" from="Player/Area2D" to="Player" method="_on_area_2d_body_entered"]
