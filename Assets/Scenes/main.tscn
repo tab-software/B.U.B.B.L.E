@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cuywkaaror6yc"]
+[gd_scene load_steps=24 format=3 uid="uid://cuywkaaror6yc"]
 
 [ext_resource type="Script" uid="uid://ddy82oyew08n0" path="res://Assets/Scripts/Player/Player.gd" id="1_f8coj"]
 [ext_resource type="Texture2D" uid="uid://ckpftqxovtgmo" path="res://Assets/Sprites/Player/Body.PNG" id="1_wn48o"]
@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://oqkxko0n33xj" path="res://Assets/Sprites/Parallax/2.PNG" id="9_3r2cu"]
 [ext_resource type="Texture2D" uid="uid://dkivnapdmppqf" path="res://Assets/Sprites/FallingObjects/box.PNG" id="9_xl787"]
 [ext_resource type="Texture2D" uid="uid://4n71nink58fa" path="res://Assets/Sprites/Parallax/1.PNG" id="10_n6l0p"]
+[ext_resource type="Texture2D" uid="uid://cgb040jcly2og" path="res://Assets/Sprites/Bubbles/1.PNG" id="11_4qkp8"]
+[ext_resource type="Script" uid="uid://byq80ap6b88sl" path="res://Assets/Scripts/Bubble/Bubble.gd" id="14_uop3n"]
 
 [sub_resource type="Gradient" id="Gradient_gyq30"]
 colors = PackedColorArray(0.12549, 0.211765, 0.341176, 1, 0, 0, 0, 1)
@@ -56,6 +58,9 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7wpkb"]
 radius = 33.0
 height = 110.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4qkp8"]
+radius = 6.5
 
 [node name="Main" type="Node2D"]
 
@@ -155,7 +160,7 @@ texture = ExtResource("5_jhjdw")
 [node name="Swirl" type="AnimatedSprite2D" parent="Player/Sprites"]
 position = Vector2(0, 1740)
 sprite_frames = SubResource("SpriteFrames_0men1")
-frame_progress = 0.144571
+frame_progress = 0.693737
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("CapsuleShape2D_7wpkb")
@@ -204,5 +209,17 @@ text = "[center]A, D TO MOVE
 CLICK TO SHOOT/START[/center]"
 fit_content = true
 scroll_active = false
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(667, 323)
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+scale = Vector2(0.01, 0.01)
+texture = ExtResource("11_4qkp8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(0.5, -0.25)
+shape = SubResource("CircleShape2D_4qkp8")
+script = ExtResource("14_uop3n")
 
 [connection signal="ready" from="Player" to="Player" method="_on_ready"]

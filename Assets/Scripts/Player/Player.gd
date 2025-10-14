@@ -51,7 +51,7 @@ func pointArms():
 	direction = mouse_pos - global_pos_arm
 	$Sprites/LArm.rotation = direction.angle()
 
-func shotMangment():
+func shotManagment():
 	pass
 
 func _physics_process(delta):
@@ -59,7 +59,7 @@ func _physics_process(delta):
 	smiwingEffect()
 	animateEyes()
 	pointArms()
-	shotMangment()
+	shotManagment()
 	move_and_slide()
 
 func _on_ready() -> void:
