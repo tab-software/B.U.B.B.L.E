@@ -1,6 +1,8 @@
-extends RigidBody2D
+extends CharacterBody2D
 
-const SPEED = 200
+const SPEED = 100
+
+var isLookAtRight = false
 
 @onready var player = get_node("/root/Main/Player")
 
@@ -10,5 +12,9 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if get_meta("enabled"):
 		var direction = (player.global_position - global_position).normalized()
-		linear_velocity = direction * SPEED
-		print(linear_velocity)
+		velocity = direction * SPEED
+		if ((velocity.x > 0) and (not isLookAtRight)) or ((velocity.x < 0) and (isLookAtRight)):
+			scale.x = -1
+			isLookAtRight = not isLookAtRight;
+		print(velocity)
+		move_and_slide()

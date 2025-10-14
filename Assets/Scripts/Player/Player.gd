@@ -85,7 +85,7 @@ func _on_ready() -> void:
 	$Sprites/Swirl.play()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.is_in_group("TRASH") and body.get_meta("enabled"):
+	if body.get_meta("enabled"):
 		$"..".screenShake()
 		body.set_meta("enabled", false)
 		var tween = create_tween()
