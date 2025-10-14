@@ -11,9 +11,11 @@ public class Bubble : MonoBehaviour
     {
         if(gameObject.tag == "TRASH" || gameObject.tag == "FISH")
         {
+            if(!gameObject.GetComponent<BubbleableObject>().bubbled)
+                Destroy(this);
             gameObject.GetComponent<BubbleableObject>().bubbled = true;
         }
-        if(gameObject.tag != "PLAYER" && gameObject.tag != "BUBBLE")
+        else if(gameObject.tag != "PLAYER" && gameObject.tag != "BUBBLE")
         {
             Destroy(this.gameObject);
         }

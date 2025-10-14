@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: ec10ac462f3285b4780acae0cf69c299
+guid: dccf0d8e398720e4cbf899666c63a50e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6026151842308396209
-    second: ProgressBar_0
+      213: 6937817954938267909
+    second: 2_0
   - first:
-      213: 7467354128804517314
-    second: ProgressBar_1
+      213: 3191122964850554743
+    second: 2_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ProgressBar_0
+      name: 2_0
       rect:
         serializedVersion: 2
-        x: 329
-        y: 133
-        width: 1470
-        height: 1603
+        x: 42
+        y: 257
+        width: 1549
+        height: 1483
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,20 +118,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1b49b533c2131a350800000000000000
-      internalID: 6026151842308396209
+      spriteID: 5092c600ca4184060800000000000000
+      internalID: 6937817954938267909
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ProgressBar_1
+      name: 2_1
       rect:
         serializedVersion: 2
-        x: 466
-        y: 1707
-        width: 1342
-        height: 217
+        x: 1613
+        y: 1471
+        width: 6
+        height: 13
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2c59073340f51a760800000000000000
-      internalID: 7467354128804517314
+      spriteID: 7773282ed65294c20800000000000000
+      internalID: 3191122964850554743
       vertices: []
       indices: 
       edges: []
