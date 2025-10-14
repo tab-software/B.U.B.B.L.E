@@ -3,7 +3,7 @@ using UnityEngine;
 public class Fade : MonoBehaviour
 {
     public float timeLapse = 10.0f;
-    private bool running = true;
+    public bool running = true;
     private bool state = false;
     private float at = 0.0f;
     
@@ -15,6 +15,7 @@ public class Fade : MonoBehaviour
     {
         this.state = !this.state;
         this.running = true;
+        this.at = Time.time;
     }
     private void Update()
     {
@@ -36,7 +37,7 @@ public class Fade : MonoBehaviour
             
             }
             if((Time.time-this.at)/this.timeLapse > 1.0f)
-                    this.running = false;
+                this.running = false;
         }
     }
 }
