@@ -1,6 +1,6 @@
 extends Area2D
 
-const VELOCITY = 200
+const VELOCITY = 400
 
 @export var direction = Vector2(0,0)
 var playerNode

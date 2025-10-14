@@ -1,5 +1,6 @@
 res://Assets/Scenes/main.tscn
-res://Assets/Scripts/Player/Player.gd
-res://Assets/Prefabs/Trash/Box.tscn
-res://Assets/Scripts/Main/main.gd
 res://Assets/Shaders/ParallaxEffect.gdshader
+res://Assets/Prefabs/Trash/Box.tscn
+res://Assets/Prefabs/Bubble/bubble.tscn
+res://Assets/Scripts/Bubble/Bubble.gd
+res://Assets/Scripts/Main/main.gd

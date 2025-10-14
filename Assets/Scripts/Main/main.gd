@@ -1,5 +1,8 @@
 extends Node2D
 
+const LEVEL_DURATION = 60.0
+var intializedAt = 0.0
+
 var onGame = false
 
 const SCREEN_SHAKE_AMP = 100.0
@@ -51,28 +54,32 @@ func fishGeneration():
 
 const PARALLAX_EFFECT_VEL = 100
 
-func parallaxEffect(delta):
-	$"Parallax/Right/3".offset.x -= delta * (PARALLAX_EFFECT_VEL/3.0)
-	$"Parallax/Right/2".offset.x -= delta * (2.0*PARALLAX_EFFECT_VEL)/3.0
-	$"Parallax/Right/1".offset.x -= delta * PARALLAX_EFFECT_VEL
-	$"Parallax/Left/3".offset.x -= delta * (PARALLAX_EFFECT_VEL/3.0)
-	$"Parallax/Left/2".offset.x -= delta * (2.0*PARALLAX_EFFECT_VEL)/3.0
-	$"Parallax/Left/1".offset.x -= delta * PARALLAX_EFFECT_VEL
-
 func _ready() -> void:
 	trashPrefab = preload("res://Assets/Prefabs/Trash/Box.tscn")
 	fishPrefab = preload("res://Assets/Prefabs/Fish/Fish.tscn")
 	#onGame = true
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	position.y = screenShakeAmplitude * sin(2*PI*SCREEN_SHAKE_FREQ*Time.get_unix_time_from_system())
 	if onGame:
 		trashGeneration()
 		fishGeneration()
-		#parallaxEffect(delta)
+		var progress = (Time.get_unix_time_from_system() - intializedAt)/LEVEL_DURATION
+		print(progress)
+		var color = Color(
+			(1.0/255.0) * (32 * max(1.0 - progress, 0.0)),
+			(1.0/255.0) * (54 + 136 * min(progress, 1.0)),
+			(1.0/255.0) * (87 + 168 * min(progress, 1.0))
+		)
+		print(color)
+		print(max(1.0 - progress, 0.0))
+		print(min(progress, 1.0))
+		$Background.texture.gradient.set_color(0, color)
+		#$Background.texture.
 	else:
 		if not $MainTitleScreen/Box.get_meta("enabled"):
 			var tween = create_tween()
 			tween.tween_property($MainTitleScreen, "modulate:a", 0.0, 1)
 			tween.tween_property($UI, "modulate:a", 1.0, 1)
+			intializedAt = Time.get_unix_time_from_system()
 			onGame = true
