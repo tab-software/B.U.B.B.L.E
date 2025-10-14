@@ -1,24 +1,19 @@
 extends CharacterBody2D
 
+var mobileOS = false
+
 const SPEED               = 20
 const MAX_SPEED           = 200
 const RSPEED              = 80
 const MAX_ANGLE_ROTATION  = 15
 
-const SMIWING_EFFECT_AMP  = 10
-const SMIWING_EFFECT_FREQ = 0.1
-
-const ANIMATION_EYES_DIST = 50
-
-const SHOOTS_PER_SECOND = 2
-const TIME_BEWEEN_SHOOTS = 1.0 / SHOOTS_PER_SECOND
-
-var bubble
-var lastShoot
+var x_movement = 0
 
 func movement(delta):
-	var x_movement := Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-	
+	if not mobileOS:
+		x_movement = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	#If mobile OS the input is managed by Mobile.gd
+
 	var angle := rotation_degrees
 	if angle > 180:
 		angle -= 360
@@ -39,8 +34,13 @@ func movement(delta):
 		else:
 			angle = 0
 
+const SMIWING_EFFECT_AMP  = 10
+const SMIWING_EFFECT_FREQ = 0.1
+
 func smiwingEffect():
 	velocity.y = SMIWING_EFFECT_AMP*cos(2*PI*SMIWING_EFFECT_FREQ*Time.get_unix_time_from_system())
+
+const ANIMATION_EYES_DIST = 50
 
 func animateEyes():
 	var mouse_pos = get_viewport().get_mouse_position()
@@ -48,30 +48,50 @@ func animateEyes():
 	var angle = direction.angle()
 	$Sprites/Head/Eyes.position = Vector2(cos(angle), sin(angle)) * ANIMATION_EYES_DIST
 
+const SHOOTS_PER_SECOND = 2
+const TIME_BEWEEN_SHOOTS = 1.0 / SHOOTS_PER_SECOND
+var lastShoot
+var bubblePrefab
+var mobileShotDirection
+
 func armsManagment():
-	var shoot = (Time.get_unix_time_from_system() - lastShoot) > TIME_BEWEEN_SHOOTS
-	shoot = shoot and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+	var shoot
+	shoot = (Time.get_unix_time_from_system() - lastShoot) > TIME_BEWEEN_SHOOTS
+	var direction
+	#Rigth Arm shoot
+	if not mobileOS:
+		shoot = shoot and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+		var mouse_pos = get_global_mouse_position()
+		var global_pos_arm = $Sprites/RArm.get_global_position()
+		direction = mouse_pos - global_pos_arm
+	else:
+		shoot = shoot and (mobileShotDirection != null)
+		direction = mobileShotDirection
 	if shoot:
-		lastShoot = Time.get_unix_time_from_system()
-	var mouse_pos = get_global_mouse_position()
-	var global_pos_arm = $Sprites/RArm.get_global_position()
-	var direction = mouse_pos - global_pos_arm
-	var bubbleInst
-	if shoot:
-		bubbleInst = bubble.instantiate()
+		var bubbleInst = bubblePrefab.instantiate()
 		bubbleInst.position = $Sprites/RArm/Canyon.get_global_position()
 		bubbleInst.direction = direction.normalized()
 		add_sibling(bubbleInst)
-	$Sprites/RArm.rotation = direction.angle()
-	global_pos_arm = $Sprites/LArm.get_global_position()
-	direction = mouse_pos - global_pos_arm
+	if direction != null:
+		$Sprites/RArm.rotation = direction.angle()
+	#Left Arm shoot
+	if not mobileOS:
+		shoot = shoot and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+		var mouse_pos = get_global_mouse_position()
+		var global_pos_arm = $Sprites/LArm.get_global_position()
+		direction = mouse_pos - global_pos_arm
+	else:
+		shoot = shoot and (mobileShotDirection != null)
+		direction = mobileShotDirection
 	if shoot:
-		bubbleInst = bubble.instantiate()
+		var bubbleInst = bubblePrefab.instantiate()
 		bubbleInst.position = $Sprites/LArm/Canyon.get_global_position()
 		bubbleInst.direction = direction.normalized()
 		add_sibling(bubbleInst)
-	$Sprites/LArm.rotation = direction.angle()
-
+	if direction != null:
+		$Sprites/LArm.rotation = direction.angle()
+	if shoot:
+		lastShoot = Time.get_unix_time_from_system()
 func _physics_process(delta):
 	movement(delta)
 	smiwingEffect()
@@ -80,9 +100,13 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _on_ready() -> void:
-	bubble = preload("res://Assets/Prefabs/Bubble/bubble.tscn")
+	bubblePrefab = preload("res://Assets/Prefabs/Bubble/bubble.tscn")
 	lastShoot = Time.get_unix_time_from_system()
 	$Sprites/Swirl.play()
+	mobileOS = (OS.get_name() == "Android") or (OS.get_name() == "iOS")
+	mobileOS = true
+	if mobileOS:
+		$"../MobileUI".modulate.a = 1.0
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.get_meta("enabled"):
