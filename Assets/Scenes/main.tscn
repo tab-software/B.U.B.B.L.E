@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cuywkaaror6yc"]
+[gd_scene load_steps=31 format=3 uid="uid://cuywkaaror6yc"]
 
 [ext_resource type="Script" uid="uid://bkg673umy4qxk" path="res://Assets/Scripts/Main/main.gd" id="1_4qkp8"]
 [ext_resource type="Script" uid="uid://ddy82oyew08n0" path="res://Assets/Scripts/Player/Player.gd" id="1_f8coj"]
@@ -12,7 +12,11 @@
 [ext_resource type="Texture2D" uid="uid://bbj03fhbjcf1d" path="res://Assets/Sprites/Parallax/3.PNG" id="8_ywrwh"]
 [ext_resource type="Texture2D" uid="uid://oqkxko0n33xj" path="res://Assets/Sprites/Parallax/2.PNG" id="9_3r2cu"]
 [ext_resource type="Texture2D" uid="uid://4n71nink58fa" path="res://Assets/Sprites/Parallax/1.PNG" id="10_n6l0p"]
+[ext_resource type="Texture2D" uid="uid://cgb040jcly2og" path="res://Assets/Sprites/Bubbles/1.PNG" id="11_4qkp8"]
+[ext_resource type="Texture2D" uid="uid://c1u33xrskxq6k" path="res://Assets/Sprites/Fish/1.PNG" id="14_ltoj3"]
+[ext_resource type="Script" uid="uid://bmawmvqgw3ec4" path="res://Assets/Scripts/Fish/Fish.gd" id="14_tm25p"]
 [ext_resource type="PackedScene" uid="uid://i4mxkgvm4obq" path="res://Assets/Prefabs/Trash/Box.tscn" id="14_uop3n"]
+[ext_resource type="Texture2D" uid="uid://cdlgww4tjiabc" path="res://Assets/Sprites/Fish/2.PNG" id="15_tm25p"]
 
 [sub_resource type="Gradient" id="Gradient_gyq30"]
 colors = PackedColorArray(0.12549, 0.211765, 0.341176, 1, 0, 0, 0, 1)
@@ -64,6 +68,27 @@ height = 168.571
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uop3n"]
 size = Vector2(798, 54)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4qkp8"]
+size = Vector2(20, 535)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qscjt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_ltoj3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_tm25p")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ccmul"]
+radius = 28.0143
+height = 75.6917
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_4qkp8")
@@ -241,6 +266,47 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Control/TrashGenArea"]
 position = Vector2(-3, -4)
 shape = SubResource("RectangleShape2D_uop3n")
+
+[node name="FishGenAreaR" type="Area2D" parent="Control"]
+position = Vector2(621, 13)
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/FishGenAreaR"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_4qkp8")
+
+[node name="FishGenAreaL" type="Area2D" parent="Control"]
+position = Vector2(-602, 21)
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/FishGenAreaL"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_4qkp8")
+
+[node name="Fish" type="RigidBody2D" parent="." groups=["FISH"]]
+position = Vector2(415, 263)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("14_tm25p")
+metadata/enabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Fish"]
+position = Vector2(1, -3)
+scale = Vector2(0.075, 0.075)
+sprite_frames = SubResource("SpriteFrames_qscjt")
+frame_progress = 0.034634
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fish"]
+position = Vector2(-3, 3)
+rotation = 1.6225
+shape = SubResource("CapsuleShape2D_ccmul")
+
+[node name="BubbleSprite2D" type="Sprite2D" parent="Fish"]
+modulate = Color(1, 1, 1, 0.501961)
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("11_4qkp8")
 
 [connection signal="ready" from="Player" to="Player" method="_on_ready"]
 [connection signal="body_entered" from="Player/Area2D" to="Player" method="_on_area_2d_body_entered"]

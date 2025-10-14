@@ -13,7 +13,7 @@ func _physics_process(delta):
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("TRASH") and body.get_meta("enabled") and modulate.a != 0:
+	if body.get_meta("enabled") and modulate.a != 0:
 		body.set_deferred("collision_layer", 0)
 		body.set_deferred("collision_mask", 0)
 		modulate.a = 0
