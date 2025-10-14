@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public GameObject progressBar;
     private float distBar = 0.0f;
     public GameObject backgroundGradient;
+    private bool showedSuperFish = false;
     void Start()
     {
         this.distBar = this.endBar.transform.position.y - this.initBar.transform.position.y;
@@ -66,6 +67,11 @@ public class GameManager : MonoBehaviour
             color.y = (1.0f/255.0f) * (54 + 136 * Math.Min(progress, 1.0f));
             color.z = (1.0f/255.0f) * (87 + 168 * Math.Min(progress, 1.0f));
             this.backgroundGradient.GetComponent<Renderer>().material.SetColor("_ColorA", color);
+            if (!showedSuperFish && progress > 0.9)
+            {
+                showedSuperFish = true;
+                GameObject.Find("SuperFish").GetComponent<SuperFish>().directionY = 1.0f;
+            }
         }
     }
 }
