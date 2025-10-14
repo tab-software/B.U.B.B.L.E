@@ -17,6 +17,11 @@ boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="res://Assets/Logo.PNG"
 config/icon="res://Assets/Logo.PNG"
 
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="keep_width"
+
 [rendering]
 
 renderer/rendering_method="mobile"

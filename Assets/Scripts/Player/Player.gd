@@ -10,6 +10,12 @@ const SMIWING_EFFECT_FREQ = 0.1
 
 const ANIMATION_EYES_DIST = 50
 
+const SHOOTS_PER_SECOND = 2
+const TIME_BEWEEN_SHOOTS = 1.0 / SHOOTS_PER_SECOND
+
+var bubble
+var lastShoot
+
 func movement(delta):
 	var x_movement := Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	
@@ -42,25 +48,46 @@ func animateEyes():
 	var angle = direction.angle()
 	$Sprites/Head/Eyes.position = Vector2(cos(angle), sin(angle)) * ANIMATION_EYES_DIST
 
-func pointArms():
+func armsManagment():
+	var shoot = (Time.get_unix_time_from_system() - lastShoot) > TIME_BEWEEN_SHOOTS
+	shoot = shoot and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+	if shoot:
+		lastShoot = Time.get_unix_time_from_system()
 	var mouse_pos = get_global_mouse_position()
 	var global_pos_arm = $Sprites/RArm.get_global_position()
 	var direction = mouse_pos - global_pos_arm
+	var bubbleInst
+	if shoot:
+		bubbleInst = bubble.instantiate()
+		bubbleInst.position = $Sprites/RArm/Canyon.get_global_position()
+		bubbleInst.direction = direction.normalized()
+		add_sibling(bubbleInst)
 	$Sprites/RArm.rotation = direction.angle()
 	global_pos_arm = $Sprites/LArm.get_global_position()
 	direction = mouse_pos - global_pos_arm
+	if shoot:
+		bubbleInst = bubble.instantiate()
+		bubbleInst.position = $Sprites/LArm/Canyon.get_global_position()
+		bubbleInst.direction = direction.normalized()
+		add_sibling(bubbleInst)
 	$Sprites/LArm.rotation = direction.angle()
-
-func shotManagment():
-	pass
 
 func _physics_process(delta):
 	movement(delta)
 	smiwingEffect()
 	animateEyes()
-	pointArms()
-	shotManagment()
+	armsManagment()
 	move_and_slide()
 
 func _on_ready() -> void:
+	bubble = preload("res://Assets/Prefabs/Bubbles/bubble_0.tscn")
+	lastShoot = Time.get_unix_time_from_system()
 	$Sprites/Swirl.play()
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("TRASH") and body.get_meta("enabled"):
+		$"..".screenShake()
+		body.set_meta("enabled", false)
+		var tween = create_tween()
+		tween.tween_property(body, "modulate:a", 0.0, 1.0)
+		tween.tween_callback(Callable(body, "queue_free"))

@@ -1,5 +1,6 @@
 [gd_scene load_steps=24 format=3 uid="uid://cuywkaaror6yc"]
 
+[ext_resource type="Script" uid="uid://bkg673umy4qxk" path="res://Assets/Scripts/Main/main.gd" id="1_4qkp8"]
 [ext_resource type="Script" uid="uid://ddy82oyew08n0" path="res://Assets/Scripts/Player/Player.gd" id="1_f8coj"]
 [ext_resource type="Texture2D" uid="uid://ckpftqxovtgmo" path="res://Assets/Sprites/Player/Body.PNG" id="1_wn48o"]
 [ext_resource type="Texture2D" uid="uid://p2nt484lg7cg" path="res://Assets/Sprites/Player/Head.PNG" id="2_bldsl"]
@@ -12,8 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://oqkxko0n33xj" path="res://Assets/Sprites/Parallax/2.PNG" id="9_3r2cu"]
 [ext_resource type="Texture2D" uid="uid://dkivnapdmppqf" path="res://Assets/Sprites/FallingObjects/box.PNG" id="9_xl787"]
 [ext_resource type="Texture2D" uid="uid://4n71nink58fa" path="res://Assets/Sprites/Parallax/1.PNG" id="10_n6l0p"]
-[ext_resource type="Texture2D" uid="uid://cgb040jcly2og" path="res://Assets/Sprites/Bubbles/1.PNG" id="11_4qkp8"]
-[ext_resource type="Script" uid="uid://byq80ap6b88sl" path="res://Assets/Scripts/Bubble/Bubble.gd" id="14_uop3n"]
+[ext_resource type="PackedScene" uid="uid://i4mxkgvm4obq" path="res://Assets/Prefabs/Trash/Box.tscn" id="14_uop3n"]
 
 [sub_resource type="Gradient" id="Gradient_gyq30"]
 colors = PackedColorArray(0.12549, 0.211765, 0.341176, 1, 0, 0, 0, 1)
@@ -59,10 +59,12 @@ animations = [{
 radius = 33.0
 height = 110.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_4qkp8"]
-radius = 6.5
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ttgh6"]
+radius = 32.8572
+height = 168.571
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_4qkp8")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(577.489, 323.245)
@@ -100,11 +102,12 @@ position = Vector2(71, -121)
 texture = ExtResource("9_3r2cu")
 
 [node name="1" type="Sprite2D" parent="Parallax/Right"]
+z_index = 2
 position = Vector2(67, -117)
 texture = ExtResource("10_n6l0p")
 
 [node name="Left" type="Node2D" parent="Parallax"]
-position = Vector2(303, 339)
+position = Vector2(297, 339)
 rotation = -4.71239
 scale = Vector2(-0.4, 0.4)
 
@@ -117,6 +120,7 @@ position = Vector2(71, -121)
 texture = ExtResource("9_3r2cu")
 
 [node name="1" type="Sprite2D" parent="Parallax/Left"]
+z_index = 2
 position = Vector2(67, -117)
 texture = ExtResource("10_n6l0p")
 
@@ -148,6 +152,9 @@ position = Vector2(885.714, 0)
 rotation = -1.5708
 texture = ExtResource("4_ur2d0")
 
+[node name="Canyon" type="Node2D" parent="Player/Sprites/RArm"]
+position = Vector2(1742.86, -28.5714)
+
 [node name="LArm" type="Node2D" parent="Player/Sprites"]
 position = Vector2(-885.714, -457.143)
 
@@ -157,13 +164,25 @@ rotation = 1.5708
 scale = Vector2(1, -1)
 texture = ExtResource("5_jhjdw")
 
+[node name="Canyon" type="Node2D" parent="Player/Sprites/LArm"]
+position = Vector2(1714.29, -28.5714)
+
 [node name="Swirl" type="AnimatedSprite2D" parent="Player/Sprites"]
 position = Vector2(0, 1740)
 sprite_frames = SubResource("SpriteFrames_0men1")
 frame_progress = 0.693737
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, -4.28571)
 shape = SubResource("CapsuleShape2D_7wpkb")
+
+[node name="Area2D" type="Area2D" parent="Player"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D"]
+position = Vector2(4.28571, -35.7143)
+shape = SubResource("CapsuleShape2D_ttgh6")
 
 [node name="MainTitleScreen" type="Node2D" parent="."]
 
@@ -210,16 +229,8 @@ CLICK TO SHOOT/START[/center]"
 fit_content = true
 scroll_active = false
 
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
-position = Vector2(667, 323)
-
-[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
-scale = Vector2(0.01, 0.01)
-texture = ExtResource("11_4qkp8")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(0.5, -0.25)
-shape = SubResource("CircleShape2D_4qkp8")
-script = ExtResource("14_uop3n")
+[node name="Box" parent="." instance=ExtResource("14_uop3n")]
+position = Vector2(886, 113)
 
 [connection signal="ready" from="Player" to="Player" method="_on_ready"]
+[connection signal="body_entered" from="Player/Area2D" to="Player" method="_on_area_2d_body_entered"]
