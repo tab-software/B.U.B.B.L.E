@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 56238814}
   m_Layer: 0
   m_Name: LArm
-  m_TagString: Untagged
+  m_TagString: PLAYER
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -822,7 +822,7 @@ GameObject:
   - component: {fileID: 582657433}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: PLAYER
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -869,6 +869,8 @@ MonoBehaviour:
   - {fileID: 7281389180574758942, guid: 942b227e860dc7d4fa9548afa5da456d, type: 3}
   - {fileID: 496479053610952050, guid: 863dc0608423ca84b9e2aa7f9f398be3, type: 3}
   - {fileID: 8429718154861816382, guid: e2b7d0e0a751d7a449ca5dd68d126132, type: 3}
+  leftShootPoint: {fileID: 1365579569}
+  rightShootPoint: {fileID: 662830778}
 --- !u!70 &582657433
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1017,6 +1019,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &662830778
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 662830779}
+  m_Layer: 0
+  m_Name: ShotPoint
+  m_TagString: PLAYER
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &662830779
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662830778}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.37, y: -8.69, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 965730485}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &728107563
 GameObject:
   m_ObjectHideFlags: 0
@@ -1130,7 +1163,7 @@ GameObject:
   - component: {fileID: 782393962}
   m_Layer: 0
   m_Name: RArm
-  m_TagString: Untagged
+  m_TagString: PLAYER
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1292,7 +1325,7 @@ GameObject:
   - component: {fileID: 965730486}
   m_Layer: 0
   m_Name: RightArm
-  m_TagString: Untagged
+  m_TagString: PLAYER
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1309,7 +1342,8 @@ Transform:
   m_LocalPosition: {x: 0.7333334, y: -0.87, z: 1}
   m_LocalScale: {x: 0.3, y: 0.09, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 662830779}
   m_Father: {fileID: 782393962}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &965730486
@@ -1848,6 +1882,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1592926750}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1365579569
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1365579570}
+  m_Layer: 0
+  m_Name: ShotPoint
+  m_TagString: PLAYER
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1365579570
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365579569}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.01, y: -8.91, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2144360613}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1407617598
 GameObject:
   m_ObjectHideFlags: 0
@@ -2168,7 +2233,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!61 &1509992354
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2542,7 +2607,7 @@ GameObject:
   - component: {fileID: 1689970418}
   m_Layer: 0
   m_Name: PlayerSprite
-  m_TagString: Untagged
+  m_TagString: PLAYER
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2578,7 +2643,7 @@ GameObject:
   - component: {fileID: 1941829532}
   m_Layer: 0
   m_Name: Swirl
-  m_TagString: Untagged
+  m_TagString: PLAYER
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3121,7 +3186,7 @@ GameObject:
   - component: {fileID: 2144360614}
   m_Layer: 0
   m_Name: LeftArm
-  m_TagString: Untagged
+  m_TagString: PLAYER
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3138,7 +3203,8 @@ Transform:
   m_LocalPosition: {x: -0.22000003, y: -0.87, z: 0}
   m_LocalScale: {x: 0.09, y: 0.09, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1365579570}
   m_Father: {fileID: 56238814}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2144360614
