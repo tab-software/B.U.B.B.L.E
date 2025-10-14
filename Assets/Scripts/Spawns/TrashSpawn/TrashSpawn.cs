@@ -10,13 +10,12 @@ public class TrashSpawn : MonoBehaviour
     {
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(Time.time > (lastSpawn + timeBetweenSpawn))
         {
             Bounds bounds = this.GetComponent<BoxCollider2D>().bounds;
-            Instantiate(prefabs[0], new Vector2(Random.Range(bounds.min.x, bounds.max.x), this.GetComponent<Transform>().position.y), new Quaternion(0,0,0,0));
+            Instantiate(prefabs[Random.Range(0, this.prefabs.Count)], new Vector2(Random.Range(bounds.min.x, bounds.max.x), this.GetComponent<Transform>().position.y), new Quaternion(0,0,0,0));
             lastSpawn = Time.time;
         }        
     }
