@@ -226,7 +226,7 @@ CLICK TO SHOOT/START[/center]"
 fit_content = true
 scroll_active = false
 
-[node name="Box" parent="MainTitleScreen" instance=ExtResource("14_uop3n")]
+[node name="Box2" parent="MainTitleScreen" instance=ExtResource("14_uop3n")]
 position = Vector2(304, 499)
 linear_velocity = Vector2(0, 0)
 
