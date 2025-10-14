@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
@@ -10,21 +9,27 @@ public class Player : MonoBehaviour
     public float swimmingEffectAmplitude = 1.0f; 
     public float swimmingEffectFrecuency = 1.0f; 
 
-    private float initialYPosition = 0.0f;
     private float angle = 0.0f;
+
+    private float eyesDist = 0.1f;
+    private Vector2 initialPosition;
 
     void Start()
     {
-        this.initialYPosition = this.GetComponent<Transform>().position.y;
+        this.initialPosition = this.GetComponent<Transform>().position;
     }
 
-    void Update()
+    private void pointArmToMouse(String nameArmObject)
+    {
+        Vector2 direction = GameObject.Find("Camera").GetComponent<Camera>().ScreenToWorldPoint(Input.mousePosition) - this.GetComponent<Transform>().Find(nameArmObject).GetComponent<Transform>().position;
+
+        float newAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        this.GetComponent<Transform>().Find(nameArmObject).GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, newAngle + (float)90);
+    }
+
+    private void movement()
     {
         float Xmovement = Input.GetAxis("Horizontal");
-
-        this.GetComponent<Transform>().position = new Vector3(this.GetComponent<Transform>().position.x,
-                                                              this.initialYPosition + swimmingEffectAmplitude*(float)Math.Sin(2.0*Math.PI*swimmingEffectFrecuency*Time.time),
-                                                              this.GetComponent<Transform>().position.z);
 
         this.angle = transform.eulerAngles.z;
         if (this.angle > 180) this.angle -= 360;
@@ -50,12 +55,34 @@ public class Player : MonoBehaviour
                 this.GetComponent<Transform>().eulerAngles = new Vector3(0f, 0f, this.GetComponent<Transform>().eulerAngles.z + Time.deltaTime * this.rotationVelocity);
             }
         }
+    }
 
-        Vector2 direction = GameObject.Find("Camera").GetComponent<Camera>().ScreenToWorldPoint(Input.mousePosition) - this.GetComponent<Transform>().Find("Arm").GetComponent<Transform>().position;
+    void smiwingEffect()
+    {
+        this.GetComponent<Transform>().position = new Vector3(this.GetComponent<Transform>().position.x,
+                                                        this.initialPosition.y + swimmingEffectAmplitude*(float)Math.Sin(2.0*Math.PI*swimmingEffectFrecuency*Time.time),
+                                                        this.GetComponent<Transform>().position.z);
+    }
 
-        float newAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+    void animateEyes()
+    {
+        Vector2 direction = GameObject.Find("Camera").GetComponent<Camera>().ScreenToWorldPoint(Input.mousePosition) - this.GetComponent<Transform>().position;
+        float angleInRadians = Mathf.Atan2(direction.y, direction.x);
+        float angleInDegrees = angleInRadians * Mathf.Rad2Deg;
+        Debug.Log("a");
+        Debug.Log(angleInDegrees);
+        Debug.Log("b");
+        Debug.Log(this.transform.GetComponent<Transform>().Find("PlayerSprite/Eyes/EyesSprite").localPosition);
+        this.transform.GetComponent<Transform>().Find("PlayerSprite/Eyes/EyesSprite").localPosition = new Vector3(this.eyesDist*(float)Math.Cos(angleInRadians), this.eyesDist*(float)Math.Sin(angleInRadians), 0);
+    }
 
-        this.GetComponent<Transform>().Find("Arm").GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, newAngle + (float)90);
+    void Update()
+    {
+        this.smiwingEffect();
+        this.movement();
+        this.pointArmToMouse("RArm");
+        this.pointArmToMouse("LArm");
+        this.animateEyes();
     }
     void OnCollisionEnter2D(Collision2D col)
     {
