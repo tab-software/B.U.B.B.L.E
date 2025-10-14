@@ -1,3 +1,71 @@
-[gd_scene format=3 uid="uid://cuywkaaror6yc"]
+[gd_scene load_steps=11 format=3 uid="uid://cuywkaaror6yc"]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource type="Texture2D" uid="uid://ckpftqxovtgmo" path="res://Assets/Sprites/Player/Body.PNG" id="1_wn48o"]
+[ext_resource type="Texture2D" uid="uid://p2nt484lg7cg" path="res://Assets/Sprites/Player/Head.PNG" id="2_bldsl"]
+[ext_resource type="Texture2D" uid="uid://yjo1wtewyki2" path="res://Assets/Sprites/Player/Eyes.PNG" id="3_ueguv"]
+[ext_resource type="Texture2D" uid="uid://5811dpotegtm" path="res://Assets/Sprites/Player/RightArm.PNG" id="4_ur2d0"]
+[ext_resource type="Texture2D" uid="uid://u2upxeqqxx6g" path="res://Assets/Sprites/Player/LeftArm.PNG" id="5_jhjdw"]
+[ext_resource type="Texture2D" uid="uid://fthlug77eg6n" path="res://Assets/Sprites/Player/Swirl.PNG" id="6_xws5s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t783k"]
+atlas = ExtResource("6_xws5s")
+region = Rect2(0, 0, 1558, 1572)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ym5mp"]
+atlas = ExtResource("6_xws5s")
+region = Rect2(0, 1572, 1558, 1572)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5gidf"]
+atlas = ExtResource("6_xws5s")
+region = Rect2(0, 3144, 1558, 1572)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0men1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t783k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ym5mp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5gidf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(564, 339)
+
+[node name="Sprites" type="Node2D" parent="Player"]
+scale = Vector2(0.05, 0.05)
+
+[node name="Body" type="Sprite2D" parent="Player/Sprites"]
+position = Vector2(6.10352e-05, 3.05176e-05)
+texture = ExtResource("1_wn48o")
+
+[node name="Head" type="Sprite2D" parent="Player/Sprites"]
+position = Vector2(1.13687e-13, -1780)
+texture = ExtResource("2_bldsl")
+
+[node name="Eyes" type="Sprite2D" parent="Player/Sprites/Head"]
+position = Vector2(20, 19.9998)
+scale = Vector2(1, 1)
+texture = ExtResource("3_ueguv")
+
+[node name="RArm" type="Sprite2D" parent="Player/Sprites"]
+position = Vector2(900, 440)
+texture = ExtResource("4_ur2d0")
+
+[node name="LArm" type="Sprite2D" parent="Player/Sprites"]
+position = Vector2(-840, 420)
+texture = ExtResource("5_jhjdw")
+
+[node name="Swirl" type="AnimatedSprite2D" parent="Player/Sprites"]
+position = Vector2(0, 1740)
+sprite_frames = SubResource("SpriteFrames_0men1")
+frame_progress = 0.98269

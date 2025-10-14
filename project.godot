@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="B.U.B.B.L.E"
+run/main_scene="res://Assets/Scenes/main.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/image="res://Assets/Logo.PNG"
+config/icon="res://Assets/Logo.PNG"
 
 [rendering]
 
 renderer/rendering_method="mobile"
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
