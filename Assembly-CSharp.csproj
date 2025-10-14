@@ -66,14 +66,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Parallax\Parallax.cs" />
+    <Compile Include="Assets\Scripts\SuperFish\SuperFish.cs" />
     <Compile Include="Assets\Scripts\Camera\TCamera.cs" />
-    <Compile Include="Assets\Scripts\Spawns\TrashSpawn\Spawner.cs" />
     <Compile Include="Assets\Scripts\Fish\Fish.cs" />
     <Compile Include="Assets\Scripts\OutsideLimits\OutsideLimits.cs" />
+    <Compile Include="Assets\Scripts\Spawner\Spawner.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\GradientShader.shader" />
+    <None Include="Assets\Fonts\OFL.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
