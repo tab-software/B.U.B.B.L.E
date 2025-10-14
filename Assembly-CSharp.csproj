@@ -65,11 +65,15 @@
     <Analyzer Include="D:\Editor\6000.0.35f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Spawns\TrashSpawn\TrashSpawn.cs" />
+    <Compile Include="Assets\Scripts\Parallax\Parallax.cs" />
     <Compile Include="Assets\Scripts\Camera\TCamera.cs" />
+    <Compile Include="Assets\Scripts\Spawns\TrashSpawn\Spawner.cs" />
     <Compile Include="Assets\Scripts\Fish\Fish.cs" />
     <Compile Include="Assets\Scripts\OutsideLimits\OutsideLimits.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Shaders\GradientShader.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

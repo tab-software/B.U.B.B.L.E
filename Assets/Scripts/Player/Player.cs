@@ -84,12 +84,21 @@ public class Player : MonoBehaviour
         this.pointArmToMouse("LArm");
         this.animateEyes();
     }
-    void OnCollisionEnter2D(Collision2D col)
+    void OnCollide(GameObject gameObject)
     {
-        if(col.gameObject.tag == "TRASH" || col.gameObject.tag == "FISH")
+        
+        if(gameObject.tag == "TRASH" || gameObject.tag == "FISH")
         {
-            Destroy(col.gameObject);
+            Destroy(gameObject);
             GameObject.Find("Camera").GetComponent<TCamera>().ApplyEffect("HSHAKE");
         }
+    }
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        this.OnCollide(col.gameObject);
+    }
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        this.OnCollide(col.gameObject);
     }
 }
