@@ -23,7 +23,7 @@ func _on_body_entered(body: Node2D) -> void:
 		else:
 			body.velocity = Vector2(0, -20)
 		var tween = create_tween()
-		tween.tween_property(body.get_node("BubbleSprite2D"), "scale", Vector2(0.15, 0.15), 0.25)
+		tween.tween_property(body.get_node("BubbleSprite2D"), "scale", Vector2(0.12, 0.12), 0.25)
 		tween.tween_property(body, "modulate:a", 0, 2)
 		tween.tween_callback(Callable(body, "queue_free"))
 		tween.tween_callback(Callable(self, "queue_free"))

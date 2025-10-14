@@ -60,8 +60,8 @@ radius = 33.0
 height = 110.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ttgh6"]
-radius = 32.8572
-height = 168.571
+radius = 28.5714
+height = 148.571
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uop3n"]
 size = Vector2(798, 54)
@@ -143,7 +143,8 @@ position = Vector2(6.10352e-05, 3.05176e-05)
 texture = ExtResource("1_wn48o")
 
 [node name="Head" type="Sprite2D" parent="Player/Sprites"]
-position = Vector2(1.13687e-13, -1780)
+position = Vector2(1.13687e-13, -1628.57)
+scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_bldsl")
 
 [node name="Eyes" type="Sprite2D" parent="Player/Sprites/Head"]
@@ -187,7 +188,7 @@ collision_layer = 6
 collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D"]
-position = Vector2(4.28571, -35.7143)
+position = Vector2(2.85714, -35.7143)
 shape = SubResource("CapsuleShape2D_ttgh6")
 
 [node name="MainTitleScreen" type="Node2D" parent="."]
@@ -269,20 +270,26 @@ modulate = Color(1, 1, 1, 0)
 position = Vector2(559, 294)
 
 [node name="Progressbar" type="Sprite2D" parent="UI"]
-modulate = Color(1, 1, 1, 0.501961)
+modulate = Color(1, 1, 1, 0.784314)
 z_index = 10
 position = Vector2(-504, -1.90735e-06)
-scale = Vector2(0.4, 0.4)
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("14_uq7jr")
 
-[node name="Head" type="Sprite2D" parent="UI/Progressbar"]
-position = Vector2(1.13687e-13, 407.5)
-scale = Vector2(0.15, 0.15)
+[node name="Head" type="Sprite2D" parent="UI"]
+z_index = 11
+position = Vector2(-504, 122.25)
+scale = Vector2(0.045, 0.045)
 texture = ExtResource("2_bldsl")
 
-[node name="Eyes" type="Sprite2D" parent="UI/Progressbar/Head"]
+[node name="Eyes" type="Sprite2D" parent="UI/Head"]
 position = Vector2(20, 19.9998)
 texture = ExtResource("3_ueguv")
+
+[node name="MobileUI" type="Node2D" parent="."]
+
+[node name="MovementControl" type="Sprite2D" parent="MobileUI"]
+z_index = 12
 
 [connection signal="ready" from="Player" to="Player" method="_on_ready"]
 [connection signal="body_entered" from="Player/Area2D" to="Player" method="_on_area_2d_body_entered"]
