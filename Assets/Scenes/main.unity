@@ -1586,12 +1586,14 @@ MonoBehaviour:
   - {fileID: 853533321}
   - {fileID: 1407617598}
   initilized: 0
+  levelDuration: 60
   shottedBox: {fileID: 527731113}
   PauseGameObject: {fileID: 648628536}
   initBar: {fileID: 1697469926}
   endBar: {fileID: 1444077194}
   logoBar: {fileID: 193862951}
   progressBar: {fileID: 1747421527}
+  backgroundGradient: {fileID: 1493157420}
 --- !u!4 &669881507
 Transform:
   m_ObjectHideFlags: 0
