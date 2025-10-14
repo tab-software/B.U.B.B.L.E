@@ -1,5 +1,6 @@
 extends Node2D
 
+var levelProgress
 const LEVEL_DURATION = 60.0
 var intializedAt = 0.0
 
@@ -52,34 +53,38 @@ func fishGeneration():
 		add_sibling(instantiatedFish)
 		fishGenNext = Time.get_unix_time_from_system() + fishGenDelay
 
-const PARALLAX_EFFECT_VEL = 100
+func backgroundUpdate():
+	var color = Color(
+	(1.0/255.0) * (32 * max(1.0 - levelProgress, 0.0)),
+	(1.0/255.0) * (54 + 136 * min(levelProgress, 1.0)),
+	(1.0/255.0) * (87 + 168 * min(levelProgress, 1.0))
+	)
+	$Background.texture.gradient.set_color(0, color)
+
+func progressBarUpdate():
+	$UI/Head.global_position.y = $UI/Progressbar/init.global_position.y + levelProgress * ($UI/Progressbar/end.global_position.y - $UI/Progressbar/init.global_position.y)
+
+func play():
+	var tween = create_tween()
+	tween.tween_property($MainTitleScreen, "modulate:a", 0.0, 1)
+	tween.tween_property($UI, "modulate:a", 1.0, 1)
+	intializedAt = Time.get_unix_time_from_system()
+	onGame = true
 
 func _ready() -> void:
 	trashPrefab = preload("res://Assets/Prefabs/Trash/Box.tscn")
 	fishPrefab = preload("res://Assets/Prefabs/Fish/Fish.tscn")
 	#onGame = true
-
+	$UI/Head.global_position = $UI/Progressbar/init.global_position
+	$UI.modulate.a = 0.0
 func _process(_delta: float) -> void:
 	position.y = screenShakeAmplitude * sin(2*PI*SCREEN_SHAKE_FREQ*Time.get_unix_time_from_system())
 	if onGame:
+		levelProgress = min((Time.get_unix_time_from_system() - intializedAt)/LEVEL_DURATION, 1.0)
 		trashGeneration()
 		fishGeneration()
-		var progress = (Time.get_unix_time_from_system() - intializedAt)/LEVEL_DURATION
-		print(progress)
-		var color = Color(
-			(1.0/255.0) * (32 * max(1.0 - progress, 0.0)),
-			(1.0/255.0) * (54 + 136 * min(progress, 1.0)),
-			(1.0/255.0) * (87 + 168 * min(progress, 1.0))
-		)
-		print(color)
-		print(max(1.0 - progress, 0.0))
-		print(min(progress, 1.0))
-		$Background.texture.gradient.set_color(0, color)
-		#$Background.texture.
+		backgroundUpdate()
+		progressBarUpdate()
 	else:
-		if not $MainTitleScreen/Box.get_meta("enabled"):
-			var tween = create_tween()
-			tween.tween_property($MainTitleScreen, "modulate:a", 0.0, 1)
-			tween.tween_property($UI, "modulate:a", 1.0, 1)
-			intializedAt = Time.get_unix_time_from_system()
-			onGame = true
+		if not $MainTitleScreen/Box.get_meta("enabled"):#On shoot
+			play()

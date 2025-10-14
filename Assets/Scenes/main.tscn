@@ -257,7 +257,6 @@ position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_4qkp8")
 
 [node name="UI" type="Node2D" parent="."]
-modulate = Color(1, 1, 1, 0)
 position = Vector2(559, 294)
 
 [node name="Progressbar" type="Sprite2D" parent="UI"]
@@ -266,6 +265,14 @@ z_index = 10
 position = Vector2(-504, -1.90735e-06)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("14_uq7jr")
+
+[node name="init" type="Node2D" parent="UI/Progressbar"]
+position = Vector2(6.66666, 413.333)
+scale = Vector2(3.33333, 3.33333)
+
+[node name="end" type="Node2D" parent="UI/Progressbar"]
+position = Vector2(5.00679e-06, -440)
+scale = Vector2(3.33333, 3.33333)
 
 [node name="Head" type="Sprite2D" parent="UI"]
 z_index = 11
