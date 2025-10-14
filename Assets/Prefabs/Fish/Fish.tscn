@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://w25xwe8xxsdj"]
+
+[ext_resource type="Script" uid="uid://bmawmvqgw3ec4" path="res://Assets/Scripts/Fish/Fish.gd" id="1_ebtny"]
+[ext_resource type="Texture2D" uid="uid://c1u33xrskxq6k" path="res://Assets/Sprites/Fish/1.PNG" id="2_51xb2"]
+[ext_resource type="Texture2D" uid="uid://cdlgww4tjiabc" path="res://Assets/Sprites/Fish/2.PNG" id="3_ugyqd"]
+[ext_resource type="Texture2D" uid="uid://cgb040jcly2og" path="res://Assets/Sprites/Bubbles/1.PNG" id="4_xiew1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qscjt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_51xb2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ugyqd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ccmul"]
+radius = 28.0143
+height = 75.6917
+
+[node name="Fish" type="CharacterBody2D" groups=["FISH"]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_ebtny")
+metadata/enabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -3)
+scale = Vector2(0.075, 0.075)
+sprite_frames = SubResource("SpriteFrames_qscjt")
+frame_progress = 0.034634
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 3)
+rotation = 1.6225
+shape = SubResource("CapsuleShape2D_ccmul")
+
+[node name="BubbleSprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.501961)
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("4_xiew1")

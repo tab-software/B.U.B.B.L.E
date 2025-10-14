@@ -16,5 +16,4 @@ func _physics_process(_delta: float) -> void:
 		if ((velocity.x > 0) and (not isLookAtRight)) or ((velocity.x < 0) and (isLookAtRight)):
 			scale.x = -1
 			isLookAtRight = not isLookAtRight;
-		print(velocity)
-		move_and_slide()
+	move_and_slide()

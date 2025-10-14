@@ -5,3 +5,4 @@ res://Assets/Prefabs/Bubbles/bubble_0.tscn
 res://Assets/Scripts/Main/main.gd
 res://Assets/Prefabs/Trash/Box.tscn
 res://Assets/Scripts/Fish/Fish.gd
+res://Assets/Prefabs/Bubble/bubble.tscn

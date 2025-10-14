@@ -80,7 +80,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _on_ready() -> void:
-	bubble = preload("res://Assets/Prefabs/Bubbles/bubble_0.tscn")
+	bubble = preload("res://Assets/Prefabs/Bubble/bubble.tscn")
 	lastShoot = Time.get_unix_time_from_system()
 	$Sprites/Swirl.play()
 

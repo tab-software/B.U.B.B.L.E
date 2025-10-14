@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://oqkxko0n33xj" path="res://Assets/Sprites/Parallax/2.PNG" id="9_3r2cu"]
 [ext_resource type="Texture2D" uid="uid://4n71nink58fa" path="res://Assets/Sprites/Parallax/1.PNG" id="10_n6l0p"]
 [ext_resource type="PackedScene" uid="uid://i4mxkgvm4obq" path="res://Assets/Prefabs/Trash/Box.tscn" id="14_uop3n"]
-[ext_resource type="Texture2D" uid="uid://bg6ws8wpp5iq0" path="res://Assets/Sprites/UI/Progressbar.png" id="14_uq7jr"]
+[ext_resource type="PackedScene" uid="uid://w25xwe8xxsdj" path="res://Assets/Prefabs/Fish/Fish.tscn" id="14_uq7jr"]
 
 [sub_resource type="Gradient" id="Gradient_gyq30"]
 colors = PackedColorArray(0.12549, 0.211765, 0.341176, 1, 0, 0, 0, 1)
@@ -264,25 +264,8 @@ monitorable = false
 position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_4qkp8")
 
-[node name="UI" type="Node2D" parent="."]
-modulate = Color(1, 1, 1, 0)
-position = Vector2(559, 294)
-
-[node name="Progressbar" type="Sprite2D" parent="UI"]
-modulate = Color(1, 1, 1, 0.501961)
-z_index = 10
-position = Vector2(-504, -1.90735e-06)
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("14_uq7jr")
-
-[node name="Head" type="Sprite2D" parent="UI/Progressbar"]
-position = Vector2(1.13687e-13, 407.5)
-scale = Vector2(0.15, 0.15)
-texture = ExtResource("2_bldsl")
-
-[node name="Eyes" type="Sprite2D" parent="UI/Progressbar/Head"]
-position = Vector2(20, 19.9998)
-texture = ExtResource("3_ueguv")
+[node name="Fish" parent="." instance=ExtResource("14_uq7jr")]
+position = Vector2(415, 263)
 
 [connection signal="ready" from="Player" to="Player" method="_on_ready"]
 [connection signal="body_entered" from="Player/Area2D" to="Player" method="_on_area_2d_body_entered"]
