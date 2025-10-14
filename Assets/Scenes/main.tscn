@@ -50,7 +50,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 10.0
+"speed": 20.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7wpkb"]
@@ -135,18 +135,27 @@ texture = ExtResource("2_bldsl")
 position = Vector2(20, 19.9998)
 texture = ExtResource("3_ueguv")
 
-[node name="RArm" type="Sprite2D" parent="Player/Sprites"]
-position = Vector2(900, 440)
+[node name="RArm" type="Node2D" parent="Player/Sprites"]
+position = Vector2(885.714, -428.571)
+
+[node name="RArmSprite" type="Sprite2D" parent="Player/Sprites/RArm"]
+position = Vector2(885.714, 0)
+rotation = -1.5708
 texture = ExtResource("4_ur2d0")
 
-[node name="LArm" type="Sprite2D" parent="Player/Sprites"]
-position = Vector2(-840, 420)
+[node name="LArm" type="Node2D" parent="Player/Sprites"]
+position = Vector2(-885.714, -457.143)
+
+[node name="LArmSprite" type="Sprite2D" parent="Player/Sprites/LArm"]
+position = Vector2(857.143, 57.1432)
+rotation = 1.5708
+scale = Vector2(1, -1)
 texture = ExtResource("5_jhjdw")
 
 [node name="Swirl" type="AnimatedSprite2D" parent="Player/Sprites"]
 position = Vector2(0, 1740)
 sprite_frames = SubResource("SpriteFrames_0men1")
-frame_progress = 0.98269
+frame_progress = 0.144571
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("CapsuleShape2D_7wpkb")
@@ -195,3 +204,5 @@ text = "[center]A, D TO MOVE
 CLICK TO SHOOT/START[/center]"
 fit_content = true
 scroll_active = false
+
+[connection signal="ready" from="Player" to="Player" method="_on_ready"]

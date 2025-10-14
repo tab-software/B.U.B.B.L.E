@@ -42,8 +42,25 @@ func animateEyes():
 	var angle = direction.angle()
 	$Sprites/Head/Eyes.position = Vector2(cos(angle), sin(angle)) * ANIMATION_EYES_DIST
 
+func pointArms():
+	var mouse_pos = get_global_mouse_position()
+	var global_pos_arm = $Sprites/RArm.get_global_position()
+	var direction = mouse_pos - global_pos_arm
+	$Sprites/RArm.rotation = direction.angle()
+	global_pos_arm = $Sprites/LArm.get_global_position()
+	direction = mouse_pos - global_pos_arm
+	$Sprites/LArm.rotation = direction.angle()
+
+func shotMangment():
+	pass
+
 func _physics_process(delta):
 	movement(delta)
 	smiwingEffect()
 	animateEyes()
+	pointArms()
+	shotMangment()
 	move_and_slide()
+
+func _on_ready() -> void:
+	$Sprites/Swirl.play()
