@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cuywkaaror6yc"]
+[gd_scene load_steps=46 format=3 uid="uid://cuywkaaror6yc"]
 
 [ext_resource type="Script" uid="uid://bkg673umy4qxk" path="res://Assets/Scripts/Main/main.gd" id="1_4qkp8"]
 [ext_resource type="Script" uid="uid://ddy82oyew08n0" path="res://Assets/Scripts/Player/Player.gd" id="1_f8coj"]
@@ -18,6 +18,15 @@
 [ext_resource type="Script" uid="uid://srf6c1ff2s5g" path="res://Assets/Scripts/Mobile/Mobile.gd" id="15_tm25p"]
 [ext_resource type="Texture2D" uid="uid://bl82s702hbp6q" path="res://Assets/Sprites/UI/Mobile/Circle.png" id="15_uq7jr"]
 [ext_resource type="Texture2D" uid="uid://ccqywjbyknnns" path="res://Assets/Sprites/UI/Mobile/Circumference.png" id="16_ltoj3"]
+[ext_resource type="Texture2D" uid="uid://cmaelltt42ums" path="res://Assets/Sprites/Octopus/1.PNG" id="19_nqgrc"]
+[ext_resource type="Texture2D" uid="uid://cfd0dqdpcxmvj" path="res://Assets/Sprites/Octopus/3.PNG" id="20_730o7"]
+[ext_resource type="Texture2D" uid="uid://5gjymtmg5urb" path="res://Assets/Sprites/Octopus/4.PNG" id="21_shq5y"]
+[ext_resource type="Texture2D" uid="uid://cvql2cucpp2tg" path="res://Assets/Sprites/Octopus/5.PNG" id="22_cma7p"]
+[ext_resource type="Texture2D" uid="uid://c0ay3asjqa017" path="res://Assets/Sprites/Octopus/6.PNG" id="23_2whn1"]
+[ext_resource type="Texture2D" uid="uid://bma4ymj1gcvqh" path="res://Assets/Sprites/Octopus/7.PNG" id="24_qvima"]
+[ext_resource type="Texture2D" uid="uid://dncbv8cqm6sxs" path="res://Assets/Sprites/Octopus/8.PNG" id="25_usbst"]
+[ext_resource type="Texture2D" uid="uid://binjpctk8qhc6" path="res://Assets/Sprites/Octopus/2.PNG" id="26_uh3ed"]
+[ext_resource type="Script" uid="uid://bah4sw825fkr3" path="res://Assets/Scripts/Octopus/Octopus.gd" id="27_hlqjr"]
 
 [sub_resource type="Gradient" id="Gradient_gyq30"]
 colors = PackedColorArray(0.12549, 0.211765, 0.341176, 1, 0, 0, 0, 1)
@@ -96,6 +105,53 @@ shader_parameter/speed = 0.025
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xcy2v"]
 shader = ExtResource("15_ltoj3")
 shader_parameter/speed = 0.05
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l2vhu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_nqgrc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_730o7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_shq5y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_cma7p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_2whn1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_qvima")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_usbst")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_qvima")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_2whn1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_cma7p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_730o7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_uh3ed")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_nqgrc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_4qkp8")
@@ -398,6 +454,14 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("10_n6l0p")
 expand_mode = 2
 stretch_mode = 1
+
+[node name="Octopus" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(574, 130)
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_l2vhu")
+frame_progress = 0.382215
+script = ExtResource("27_hlqjr")
 
 [connection signal="ready" from="Player" to="Player" method="_on_ready"]
 [connection signal="body_entered" from="Player/Area2D" to="Player" method="_on_area_2d_body_entered"]

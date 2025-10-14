@@ -93,6 +93,7 @@ func armsManagment():
 		$Sprites/LArm.rotation = direction.angle()
 	if shoot:
 		lastShoot = Time.get_unix_time_from_system()
+
 func _physics_process(delta):
 	movement(delta)
 	smiwingEffect()
