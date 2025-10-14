@@ -1,11 +1,25 @@
-[gd_scene load_steps=11 format=3 uid="uid://cuywkaaror6yc"]
+[gd_scene load_steps=20 format=3 uid="uid://cuywkaaror6yc"]
 
+[ext_resource type="Script" path="res://Assets/Scripts/Player/Player.gd" id="1_f8coj"]
 [ext_resource type="Texture2D" uid="uid://ckpftqxovtgmo" path="res://Assets/Sprites/Player/Body.PNG" id="1_wn48o"]
 [ext_resource type="Texture2D" uid="uid://p2nt484lg7cg" path="res://Assets/Sprites/Player/Head.PNG" id="2_bldsl"]
 [ext_resource type="Texture2D" uid="uid://yjo1wtewyki2" path="res://Assets/Sprites/Player/Eyes.PNG" id="3_ueguv"]
 [ext_resource type="Texture2D" uid="uid://5811dpotegtm" path="res://Assets/Sprites/Player/RightArm.PNG" id="4_ur2d0"]
 [ext_resource type="Texture2D" uid="uid://u2upxeqqxx6g" path="res://Assets/Sprites/Player/LeftArm.PNG" id="5_jhjdw"]
 [ext_resource type="Texture2D" uid="uid://fthlug77eg6n" path="res://Assets/Sprites/Player/Swirl.PNG" id="6_xws5s"]
+[ext_resource type="FontFile" uid="uid://3hsgrw6l0cei" path="res://Assets/Fonts/static/Oswald-Bold.ttf" id="8_q2uwk"]
+[ext_resource type="Texture2D" uid="uid://bbj03fhbjcf1d" path="res://Assets/Sprites/Parallax/3.PNG" id="8_ywrwh"]
+[ext_resource type="Texture2D" uid="uid://oqkxko0n33xj" path="res://Assets/Sprites/Parallax/2.PNG" id="9_3r2cu"]
+[ext_resource type="Texture2D" uid="uid://dkivnapdmppqf" path="res://Assets/Sprites/FallingObjects/box.PNG" id="9_xl787"]
+[ext_resource type="Texture2D" uid="uid://4n71nink58fa" path="res://Assets/Sprites/Parallax/1.PNG" id="10_n6l0p"]
+
+[sub_resource type="Gradient" id="Gradient_gyq30"]
+colors = PackedColorArray(0.12549, 0.211765, 0.341176, 1, 0, 0, 0, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 30
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_423fd"]
+gradient = SubResource("Gradient_gyq30")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t783k"]
 atlas = ExtResource("6_xws5s")
@@ -36,10 +50,58 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7wpkb"]
+radius = 33.0
+height = 110.0
+
 [node name="Main" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(577.489, 323.245)
+rotation = 1.57079
+scale = Vector2(2.53132, 1152.7)
+texture = SubResource("GradientTexture1D_423fd")
+
+[node name="Parallax" type="Node2D" parent="."]
+
+[node name="Right" type="Node2D" parent="Parallax"]
+position = Vector2(856, 339)
+rotation = -1.57079
+scale = Vector2(0.4, 0.4)
+
+[node name="3" type="Sprite2D" parent="Parallax/Right"]
+position = Vector2(79, -116)
+texture = ExtResource("8_ywrwh")
+
+[node name="2" type="Sprite2D" parent="Parallax/Right"]
+position = Vector2(71, -121)
+texture = ExtResource("9_3r2cu")
+
+[node name="1" type="Sprite2D" parent="Parallax/Right"]
+position = Vector2(67, -117)
+texture = ExtResource("10_n6l0p")
+
+[node name="Left" type="Node2D" parent="Parallax"]
+position = Vector2(303, 339)
+rotation = -4.71239
+scale = Vector2(-0.4, 0.4)
+
+[node name="3" type="Sprite2D" parent="Parallax/Left"]
+position = Vector2(79, -116)
+texture = ExtResource("8_ywrwh")
+
+[node name="2" type="Sprite2D" parent="Parallax/Left"]
+position = Vector2(71, -121)
+texture = ExtResource("9_3r2cu")
+
+[node name="1" type="Sprite2D" parent="Parallax/Left"]
+position = Vector2(67, -117)
+texture = ExtResource("10_n6l0p")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(564, 339)
+scale = Vector2(0.7, 0.7)
+script = ExtResource("1_f8coj")
 
 [node name="Sprites" type="Node2D" parent="Player"]
 scale = Vector2(0.05, 0.05)
@@ -54,7 +116,6 @@ texture = ExtResource("2_bldsl")
 
 [node name="Eyes" type="Sprite2D" parent="Player/Sprites/Head"]
 position = Vector2(20, 19.9998)
-scale = Vector2(1, 1)
 texture = ExtResource("3_ueguv")
 
 [node name="RArm" type="Sprite2D" parent="Player/Sprites"]
@@ -69,3 +130,51 @@ texture = ExtResource("5_jhjdw")
 position = Vector2(0, 1740)
 sprite_frames = SubResource("SpriteFrames_0men1")
 frame_progress = 0.98269
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CapsuleShape2D_7wpkb")
+
+[node name="MainTitleScreen" type="Node2D" parent="."]
+
+[node name="Title" type="RichTextLabel" parent="MainTitleScreen"]
+offset_left = 1.0
+offset_top = 36.0
+offset_right = 1153.0
+offset_bottom = 258.0
+theme_override_colors/default_color = Color(0.588235, 0.588235, 0.588235, 1)
+theme_override_fonts/normal_font = ExtResource("8_q2uwk")
+theme_override_font_sizes/normal_font_size = 110
+bbcode_enabled = true
+text = "[center]B . U . B . B . L . E ."
+
+[node name="Box" type="Sprite2D" parent="MainTitleScreen"]
+position = Vector2(299, 465)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("9_xl787")
+
+[node name="desc2" type="RichTextLabel" parent="MainTitleScreen"]
+offset_left = 136.0
+offset_top = 411.0
+offset_right = 334.0
+offset_bottom = 465.0
+rotation = -0.540621
+theme_override_colors/default_color = Color(0.588235, 0.588235, 0.588235, 1)
+theme_override_font_sizes/normal_font_size = 19
+bbcode_enabled = true
+text = "[center]SHOOT THE BOX
+TO START[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="desc" type="RichTextLabel" parent="MainTitleScreen"]
+offset_left = 1.0
+offset_top = 12.0
+offset_right = 1152.0
+offset_bottom = 77.0
+theme_override_colors/default_color = Color(0.588235, 0.588235, 0.588235, 1)
+theme_override_font_sizes/normal_font_size = 19
+bbcode_enabled = true
+text = "[center]A, D TO MOVE
+CLICK TO SHOOT/START[/center]"
+fit_content = true
+scroll_active = false

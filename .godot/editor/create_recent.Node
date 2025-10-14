@@ -1,5 +1,9 @@
-AnimatedSprite2D
-Sprite2D
+RichTextLabel
+TextEdit
 Node2D
+Sprite2D
+CollisionShape2D
+RigidBody2D
+AnimatedSprite2D
 Node
 CharacterBody2D

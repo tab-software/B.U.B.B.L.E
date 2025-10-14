@@ -1,6 +1,6 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1752876236
-::res://Assets/::1752875084
+::res://::1753029817
+::res://Assets/::1752956163
 Logo.PNG::CompressedTexture2D::7549881958413999378::1752873721::1752874774::1::::<><>::
 ::res://Assets/Audio/::1752874776
 loopBase.ogg::AudioStreamOggVorbis::1378955688026954624::1752873721::1752874770::1::::<><>::
@@ -19,8 +19,11 @@ Oswald-SemiBold.ttf::FontFile::5966182533671695042::1752873721::1752874770::1:::
 icon.svg::CompressedTexture2D::5100942581124288134::1752873942::1752874773::1::::<><>::
 ::res://Assets/Prefabs/::1752875102
 ::res://Assets/Prefabs/Player/::1752875123
-::res://Assets/Scenes/::1752876194
-main.tscn::PackedScene::6227516938816011318::1752876194::0::1::::<><>::uid://ckpftqxovtgmo::::res://Assets/Sprites/Player/Body.PNG<>uid://p2nt484lg7cg::::res://Assets/Sprites/Player/Head.PNG<>uid://yjo1wtewyki2::::res://Assets/Sprites/Player/Eyes.PNG<>uid://5811dpotegtm::::res://Assets/Sprites/Player/RightArm.PNG<>uid://u2upxeqqxx6g::::res://Assets/Sprites/Player/LeftArm.PNG<>uid://fthlug77eg6n::::res://Assets/Sprites/Player/Swirl.PNG
+::res://Assets/Scenes/::1752956446
+main.tscn::PackedScene::6227516938816011318::1752956446::0::1::::<><>::res://Assets/Scripts/Player/Player.gd<>uid://ckpftqxovtgmo::::res://Assets/Sprites/Player/Body.PNG<>uid://p2nt484lg7cg::::res://Assets/Sprites/Player/Head.PNG<>uid://yjo1wtewyki2::::res://Assets/Sprites/Player/Eyes.PNG<>uid://5811dpotegtm::::res://Assets/Sprites/Player/RightArm.PNG<>uid://u2upxeqqxx6g::::res://Assets/Sprites/Player/LeftArm.PNG<>uid://fthlug77eg6n::::res://Assets/Sprites/Player/Swirl.PNG
+::res://Assets/Scripts/::1752956171
+::res://Assets/Scripts/Player/::1752984913
+Player.gd::GDScript::-1::1752984913::0::1::::<>CharacterBody2D<>::
 ::res://Assets/Sprites/::1752874442
 ::res://Assets/Sprites/Bubbles/::1752874775
 1.PNG::CompressedTexture2D::5197609846904398654::1752873721::1752874774::1::::<><>::
