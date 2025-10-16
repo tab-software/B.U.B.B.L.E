@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://cuywkaaror6yc"]
+[gd_scene load_steps=47 format=3 uid="uid://cuywkaaror6yc"]
 
 [ext_resource type="Script" uid="uid://bkg673umy4qxk" path="res://Assets/Scripts/Main/main.gd" id="1_4qkp8"]
 [ext_resource type="Script" uid="uid://ddy82oyew08n0" path="res://Assets/Scripts/Player/Player.gd" id="1_f8coj"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://srf6c1ff2s5g" path="res://Assets/Scripts/Mobile/Mobile.gd" id="15_tm25p"]
 [ext_resource type="Texture2D" uid="uid://bl82s702hbp6q" path="res://Assets/Sprites/UI/Mobile/Circle.png" id="15_uq7jr"]
 [ext_resource type="Texture2D" uid="uid://ccqywjbyknnns" path="res://Assets/Sprites/UI/Mobile/Circumference.png" id="16_ltoj3"]
+[ext_resource type="Texture2D" uid="uid://cddcgrm57635n" path="res://Assets/Sprites/InkBlot/InkBlot.png" id="19_730o7"]
 [ext_resource type="Texture2D" uid="uid://cmaelltt42ums" path="res://Assets/Sprites/Octopus/1.PNG" id="19_nqgrc"]
 [ext_resource type="Texture2D" uid="uid://cfd0dqdpcxmvj" path="res://Assets/Sprites/Octopus/3.PNG" id="20_730o7"]
 [ext_resource type="Texture2D" uid="uid://5gjymtmg5urb" path="res://Assets/Sprites/Octopus/4.PNG" id="21_shq5y"]
@@ -177,7 +178,7 @@ position = Vector2(-4.74074, 0.00997651)
 shape = SubResource("RectangleShape2D_ttgh6")
 
 [node name="Player" type="CharacterBody2D" parent="."]
-z_index = 4096
+z_index = 2048
 position = Vector2(564, 339)
 scale = Vector2(0.7, 0.7)
 script = ExtResource("1_f8coj")
@@ -456,6 +457,13 @@ texture = ExtResource("10_n6l0p")
 expand_mode = 2
 stretch_mode = 1
 
+[node name="InkBlot" type="Sprite2D" parent="."]
+visible = false
+z_index = 4096
+position = Vector2(568, 316)
+scale = Vector2(3, 3)
+texture = ExtResource("19_730o7")
+
 [node name="Octopus" type="Node2D" parent="."]
 position = Vector2(565, -576)
 rotation = 0.785398
@@ -464,7 +472,6 @@ script = ExtResource("27_hlqjr")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="Octopus"]
 position = Vector2(40, 7340)
-scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_l2vhu")
 frame_progress = 0.382215
 
