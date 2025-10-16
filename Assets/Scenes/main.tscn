@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://cuywkaaror6yc"]
+[gd_scene load_steps=48 format=3 uid="uid://cuywkaaror6yc"]
 
 [ext_resource type="Script" uid="uid://bkg673umy4qxk" path="res://Assets/Scripts/Main/main.gd" id="1_4qkp8"]
 [ext_resource type="Script" uid="uid://ddy82oyew08n0" path="res://Assets/Scripts/Player/Player.gd" id="1_f8coj"]
@@ -28,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://dncbv8cqm6sxs" path="res://Assets/Sprites/Octopus/8.PNG" id="25_usbst"]
 [ext_resource type="Texture2D" uid="uid://binjpctk8qhc6" path="res://Assets/Sprites/Octopus/2.PNG" id="26_uh3ed"]
 [ext_resource type="Script" uid="uid://bah4sw825fkr3" path="res://Assets/Scripts/Octopus/Octopus.gd" id="27_hlqjr"]
+[ext_resource type="Texture2D" uid="uid://u6p287pp4gd6" path="res://Assets/Sprites/InkDroplet/InkDroplet.png" id="29_shq5y"]
 
 [sub_resource type="Gradient" id="Gradient_gyq30"]
 colors = PackedColorArray(0.12549, 0.211765, 0.341176, 1, 0, 0, 0, 1)
@@ -474,6 +475,11 @@ script = ExtResource("27_hlqjr")
 position = Vector2(40, 7340)
 sprite_frames = SubResource("SpriteFrames_l2vhu")
 frame_progress = 0.382215
+
+[node name="InkDroplet" type="Sprite2D" parent="."]
+position = Vector2(522, 229)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("29_shq5y")
 
 [connection signal="ready" from="Player" to="Player" method="_on_ready"]
 [connection signal="body_entered" from="Player/Area2D" to="Player" method="_on_area_2d_body_entered"]
