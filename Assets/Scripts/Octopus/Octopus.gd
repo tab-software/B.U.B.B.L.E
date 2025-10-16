@@ -10,6 +10,7 @@ func activate():
 	self.active = true
 
 func reset():
+	self.active = false
 	self.rotation_degrees = 45
 
 func finishTween():

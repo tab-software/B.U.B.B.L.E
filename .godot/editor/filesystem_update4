@@ -1,1 +1,3 @@
 res://Assets/Scenes/main.tscn
+res://Assets/Scripts/Main/main.gd
+res://Assets/Scripts/Octopus/Octopus.gd

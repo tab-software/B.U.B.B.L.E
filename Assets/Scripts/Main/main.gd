@@ -1,5 +1,6 @@
 extends Node2D
 
+var octopusFlag
 var levelProgress
 const LEVEL_DURATION = 60.0
 var intializedAt = 0.0
@@ -71,12 +72,28 @@ func play():
 	intializedAt = Time.get_unix_time_from_system()
 	onGame = true
 
+func reset():
+	self.levelProgress = null
+	self.octopusFlag = false
+
+var fadeTween
+
+func _on_video_finished():
+	$VideoPlayer.modulate = 0
+	fadeTween = create_tween()
+	fadeTween.tween_property(
+		$Fade, "modulate:a", 0.0, 2.0
+	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
 func _ready() -> void:
 	trashPrefab = preload("res://Assets/Prefabs/Trash/Box.tscn")
 	fishPrefab = preload("res://Assets/Prefabs/Fish/Fish.tscn")
 	#onGame = true
 	$UI/Head.global_position = $UI/Progressbar/init.global_position
 	$UI.modulate.a = 0.0
+	$VideoPlayer.connect("finished", _on_video_finished, 0)
+
+
 func _process(_delta: float) -> void:
 	position.y = screenShakeAmplitude * sin(2*PI*SCREEN_SHAKE_FREQ*Time.get_unix_time_from_system())
 	if onGame:
@@ -88,3 +105,9 @@ func _process(_delta: float) -> void:
 	else:
 		if not $MainTitleScreen/Box.get_meta("enabled"):#On shoot
 			play()
+	if self.levelProgress:
+		if (self.levelProgress >= 0.1) and not self.octopusFlag:
+			self.octopusFlag = true
+			$Octopus.activate()
+		if (self.levelProgress >= 1.0):
+			pass
