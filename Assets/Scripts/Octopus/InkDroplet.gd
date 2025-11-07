@@ -8,7 +8,6 @@ var initialPosition
 func _ready() -> void:
 	$Area2D.add_to_group("InkDroplet")
 	self.initialPosition = self.global_position
-	print("ASd")
 
 func _process(delta: float) -> void:
 	self.position.y += delta * VEL
