@@ -2,7 +2,7 @@ git branch -D production
 git checkout --orphan production
 rm WebBuild -r
 mkdir WebBuild
-godot.exe --path . --export-release "Web" ./WebBuild/index.html --headless
+godot --path . --export-release "Web" ./WebBuild/index.html --headless
 git rm -rf .
 cp -r WebBuild/* .
 git add .
