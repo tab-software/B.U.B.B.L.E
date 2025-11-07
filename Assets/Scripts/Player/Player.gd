@@ -117,3 +117,14 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		var tween = create_tween()
 		tween.tween_property(body, "modulate:a", 0.0, 1.0)
 		tween.tween_callback(Callable(body, "queue_free"))
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area.is_in_group("InkDroplet"):
+		var tween = create_tween()
+		tween.tween_property($"../InkBlot", "scale", Vector2(3, 3), 1.0)
+		tween.tween_property($"../InkBlot", "modulate:a", 0, 1.0)
+		tween.tween_callback(func() -> void:
+			$"../InkBlot".modulate.a = 1.0
+			$"../InkBlot".scale = Vector2(0, 0)
+		)
+		area.get_parent().queue_free()
