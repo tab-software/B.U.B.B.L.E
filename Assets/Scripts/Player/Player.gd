@@ -106,8 +106,12 @@ func _on_ready() -> void:
 	bubblePrefab = preload("res://Assets/Prefabs/Bubble/bubble.tscn")
 	lastShoot = Time.get_unix_time_from_system()
 	$Sprites/Swirl.play()
-	mobileOS = (OS.get_name() == "Android") or (OS.get_name() == "iOS")
-	#mobileOS = true
+	var hostOS = OS.get_name()
+	if hostOS == "Web":
+		var screen_size = DisplayServer.screen_get_size()
+		mobileOS = screen_size.x < 900 or screen_size.y < 900 # is small screen
+	else:
+		mobileOS = (hostOS == "Android") or (hostOS == "iOS")
 	if mobileOS:
 		$"../MobileUI".modulate.a = 1.0
 
