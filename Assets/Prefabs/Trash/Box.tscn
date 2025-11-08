@@ -1,13 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://i4mxkgvm4obq"]
+[gd_scene load_steps=4 format=3 uid="uid://i4mxkgvm4obq"]
 
+[ext_resource type="Script" uid="uid://b0sg4asere2me" path="res://Assets/Scripts/linearMovement.gd" id="1_e5n0r"]
 [ext_resource type="Texture2D" uid="uid://dkivnapdmppqf" path="res://Assets/Sprites/FallingObjects/box.PNG" id="1_smgmm"]
 [ext_resource type="Texture2D" uid="uid://cgb040jcly2og" path="res://Assets/Sprites/Bubbles/1.PNG" id="2_n81n1"]
 
-[node name="Box" type="RigidBody2D" groups=["TRASH"]]
+[node name="Box" type="Area2D" groups=["TRASH"]]
 collision_layer = 4
-collision_mask = 4
-gravity_scale = 0.0
-linear_velocity = Vector2(0, 80)
+collision_mask = 0
+script = ExtResource("1_e5n0r")
 metadata/enabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

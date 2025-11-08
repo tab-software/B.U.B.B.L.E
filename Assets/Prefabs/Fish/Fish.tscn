@@ -23,7 +23,7 @@ animations = [{
 radius = 28.0143
 height = 75.6917
 
-[node name="Fish" type="CharacterBody2D" groups=["FISH"]]
+[node name="Fish" type="Area2D" groups=["FISH"]]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_ebtny")

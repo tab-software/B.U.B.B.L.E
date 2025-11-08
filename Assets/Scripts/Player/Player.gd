@@ -111,15 +111,15 @@ func _on_ready() -> void:
 	if mobileOS:
 		$"../MobileUI".modulate.a = 1.0
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.get_meta("enabled"):
-		$"..".screenShake()
-		body.set_meta("enabled", false)
-		var tween = create_tween()
-		tween.tween_property(body, "modulate:a", 0.0, 1.0)
-		tween.tween_callback(Callable(body, "queue_free"))
-
 func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area.is_in_group("TRASH"):
+		if area.get_meta("enabled"):
+			$"..".screenShake()
+			area.set_meta("enabled", false)
+			var tween = create_tween()
+			tween.tween_property(area, "modulate:a", 0.0, 1.0)
+			tween.tween_callback(Callable(area, "queue_free"))
+
 	if area.is_in_group("InkDroplet"):
 		var tween = create_tween()
 		tween.tween_property($"../InkBlot", "scale", Vector2(3, 3), 1.0)

@@ -26,7 +26,7 @@ func _ready() -> void:
 	self.reset()
 	$Sprite.play()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if self.active:
 		if ( Time.get_unix_time_from_system() - self.latestDrop ) > TIME_BETWEEN_DROPS:
 			var inkDropletInst = inkDropletPrefab.instantiate()

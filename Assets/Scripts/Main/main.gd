@@ -19,6 +19,7 @@ func screenShake():
 	var tween = create_tween()
 	tween.tween_property(self, "screenShakeAmplitude", 0.0, 0.25)
 
+const TRASH_VELOCITY = 50
 const TRASH_GEN_MIN_DELAY = 1.5
 const TRASH_GEN_INITIAL_DELAY = 3
 var   trashGenDelay = TRASH_GEN_INITIAL_DELAY
@@ -32,6 +33,8 @@ func trashGeneration():
 		var shape = collision.shape as RectangleShape2D
 		instantiatedTrash.position = collision.global_position
 		instantiatedTrash.position.x += randf_range(-shape.extents.x, shape.extents.x)
+		instantiatedTrash.add_to_group("TRASH")
+		instantiatedTrash.linearVel = Vector2(0, TRASH_VELOCITY)
 		add_sibling(instantiatedTrash)
 		trashGenNext = Time.get_unix_time_from_system() + trashGenDelay
 
@@ -52,6 +55,7 @@ func fishGeneration():
 		var shape = collision.shape as RectangleShape2D
 		instantiatedFish.position = collision.global_position
 		instantiatedFish.position.y += randf_range(-shape.extents.y, shape.extents.y)
+		instantiatedFish.add_to_group("TRASH")
 		add_sibling(instantiatedFish)
 		fishGenNext = Time.get_unix_time_from_system() + fishGenDelay
 
@@ -100,10 +104,10 @@ func _process(_delta: float) -> void:
 	position.y = screenShakeAmplitude * sin(2*PI*SCREEN_SHAKE_FREQ*Time.get_unix_time_from_system())
 	if onGame:
 		levelProgress = min((Time.get_unix_time_from_system() - intializedAt)/LEVEL_DURATION, 1.0)
-		trashGeneration()
-		fishGeneration()
-		backgroundUpdate()
-		progressBarUpdate()
+		self.trashGeneration()
+		self.fishGeneration()
+		self.backgroundUpdate()
+		self.progressBarUpdate()
 	else:
 		if not $MainTitleScreen/Box.get_meta("enabled"):#On shoot
 			play()

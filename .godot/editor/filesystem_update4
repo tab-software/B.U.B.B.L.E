@@ -1,2 +1,7 @@
 res://Assets/Scenes/main.tscn
-res://Assets/Scripts/Player/Player.gd
+res://Assets/Scripts/linearMovement.gd
+res://Assets/Scripts/Main/main.gd
+res://Assets/Scripts/Octopus/Octopus.gd
+res://Assets/Prefabs/Fish/Fish.tscn
+res://Assets/Scripts/Fish/Fish.gd
+res://Assets/Scripts/Bubble/Bubble.gd

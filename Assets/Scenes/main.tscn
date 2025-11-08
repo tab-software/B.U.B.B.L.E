@@ -320,7 +320,6 @@ scroll_active = false
 
 [node name="Box" parent="MainTitleScreen" instance=ExtResource("14_uop3n")]
 position = Vector2(304, 499)
-linear_velocity = Vector2(0, 0)
 
 [node name="Control" type="Node2D" parent="."]
 position = Vector2(567, 318)
