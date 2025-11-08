@@ -1,3 +1,2 @@
 res://Assets/Scenes/main.tscn
-res://Assets/Scripts/Main/main.gd
-res://Assets/Scripts/SuperFish.gd
+res://Assets/Scripts/Player/Player.gd

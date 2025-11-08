@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://cuywkaaror6yc"]
+[gd_scene load_steps=58 format=3 uid="uid://cuywkaaror6yc"]
 
 [ext_resource type="Script" uid="uid://bkg673umy4qxk" path="res://Assets/Scripts/Main/main.gd" id="1_4qkp8"]
 [ext_resource type="Script" uid="uid://ddy82oyew08n0" path="res://Assets/Scripts/Player/Player.gd" id="1_f8coj"]
@@ -11,6 +11,7 @@
 [ext_resource type="FontFile" uid="uid://3hsgrw6l0cei" path="res://Assets/Fonts/static/Oswald-Bold.ttf" id="8_q2uwk"]
 [ext_resource type="Texture2D" uid="uid://bbj03fhbjcf1d" path="res://Assets/Sprites/Parallax/3.PNG" id="8_ywrwh"]
 [ext_resource type="Texture2D" uid="uid://oqkxko0n33xj" path="res://Assets/Sprites/Parallax/2.PNG" id="9_3r2cu"]
+[ext_resource type="AudioStream" uid="uid://cbofbx2rltk7b" path="res://Assets/Audio/sfx_bubbleshot.wav" id="9_hlqjr"]
 [ext_resource type="Texture2D" uid="uid://4n71nink58fa" path="res://Assets/Sprites/Parallax/1.PNG" id="10_n6l0p"]
 [ext_resource type="PackedScene" uid="uid://i4mxkgvm4obq" path="res://Assets/Prefabs/Trash/Box.tscn" id="14_uop3n"]
 [ext_resource type="Texture2D" uid="uid://bg6ws8wpp5iq0" path="res://Assets/Sprites/UI/Progressbar.png" id="14_uq7jr"]
@@ -34,6 +35,7 @@
 [ext_resource type="Texture2D" uid="uid://ia61g6i38013" path="res://Assets/Sprites/SuperFish/3.PNG" id="32_hlqjr"]
 [ext_resource type="Texture2D" uid="uid://bbx52g76yt6bs" path="res://Assets/Sprites/SuperFish/4.PNG" id="33_l2vhu"]
 [ext_resource type="Script" uid="uid://fhtcvurqy1w1" path="res://Assets/Scripts/SuperFish.gd" id="34_uh3ed"]
+[ext_resource type="AudioStream" uid="uid://tv8g0yiqleay" path="res://Assets/Audio/loopBase.ogg" id="36_l2vhu"]
 
 [sub_resource type="Gradient" id="Gradient_gyq30"]
 colors = PackedColorArray(0.12549, 0.211765, 0.341176, 1, 0, 0, 0, 1)
@@ -271,6 +273,10 @@ collision_mask = 6
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D"]
 position = Vector2(2.85714, -35.7143)
 shape = SubResource("CapsuleShape2D_ttgh6")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource("9_hlqjr")
+volume_db = 1.0
 
 [node name="MainTitleScreen" type="Node2D" parent="."]
 
@@ -532,6 +538,10 @@ scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_052nx")
 frame_progress = 0.08443638
 script = ExtResource("34_uh3ed")
+
+[node name="baseLoop" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("36_l2vhu")
+autoplay = true
 
 [connection signal="ready" from="Player" to="Player" method="_on_ready"]
 [connection signal="area_entered" from="Player/Area2D" to="Player" method="_on_area_2d_area_entered"]

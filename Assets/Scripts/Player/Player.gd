@@ -73,6 +73,7 @@ func armsManagment():
 		bubbleInst.position = $Sprites/RArm/Canyon.get_global_position()
 		bubbleInst.direction = direction.normalized()
 		add_sibling(bubbleInst)
+		$AudioStreamPlayer2D.play()
 	if direction != null:
 		$Sprites/RArm.rotation = direction.angle()
 	#Left Arm shoot
