@@ -1,6 +1,7 @@
 extends Node2D
 
 var octopusFlag
+var superFishFlag
 var levelProgress
 const LEVEL_DURATION = 60.0
 var intializedAt = 0.0
@@ -75,6 +76,7 @@ func play():
 func reset():
 	self.levelProgress = null
 	self.octopusFlag = false
+	self.superFishFlag = false
 
 var fadeTween
 
@@ -92,7 +94,7 @@ func _ready() -> void:
 	$UI/Head.global_position = $UI/Progressbar/init.global_position
 	$UI.modulate.a = 0.0
 	$VideoPlayer.connect("finished", _on_video_finished, 0)
-
+	$SuperFish.play()
 
 func _process(_delta: float) -> void:
 	position.y = screenShakeAmplitude * sin(2*PI*SCREEN_SHAKE_FREQ*Time.get_unix_time_from_system())
@@ -109,5 +111,8 @@ func _process(_delta: float) -> void:
 		if (self.levelProgress >= 0.1) and not self.octopusFlag:
 			self.octopusFlag = true
 			$Octopus.activate()
+		if (self.levelProgress >= 0.8) and not self.superFishFlag:
+			self.superFishFlag = true
+			$SuperFish.activate()
 		if (self.levelProgress >= 1.0):
 			pass

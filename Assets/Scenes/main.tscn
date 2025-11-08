@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://cuywkaaror6yc"]
+[gd_scene load_steps=56 format=3 uid="uid://cuywkaaror6yc"]
 
 [ext_resource type="Script" uid="uid://bkg673umy4qxk" path="res://Assets/Scripts/Main/main.gd" id="1_4qkp8"]
 [ext_resource type="Script" uid="uid://ddy82oyew08n0" path="res://Assets/Scripts/Player/Player.gd" id="1_f8coj"]
@@ -29,6 +29,11 @@
 [ext_resource type="Texture2D" uid="uid://binjpctk8qhc6" path="res://Assets/Sprites/Octopus/2.PNG" id="26_uh3ed"]
 [ext_resource type="Script" uid="uid://bah4sw825fkr3" path="res://Assets/Scripts/Octopus/Octopus.gd" id="27_hlqjr"]
 [ext_resource type="VideoStream" uid="uid://bu6fptmswcfjn" path="res://Assets/Videos/Intro.ogv" id="30_cma7p"]
+[ext_resource type="Texture2D" uid="uid://3hpe82daw0lv" path="res://Assets/Sprites/SuperFish/1.PNG" id="30_usbst"]
+[ext_resource type="Texture2D" uid="uid://1kglyaw4y2sk" path="res://Assets/Sprites/SuperFish/2.PNG" id="31_uh3ed"]
+[ext_resource type="Texture2D" uid="uid://ia61g6i38013" path="res://Assets/Sprites/SuperFish/3.PNG" id="32_hlqjr"]
+[ext_resource type="Texture2D" uid="uid://bbx52g76yt6bs" path="res://Assets/Sprites/SuperFish/4.PNG" id="33_l2vhu"]
+[ext_resource type="Script" uid="uid://fhtcvurqy1w1" path="res://Assets/Scripts/SuperFish.gd" id="34_uh3ed"]
 
 [sub_resource type="Gradient" id="Gradient_gyq30"]
 colors = PackedColorArray(0.12549, 0.211765, 0.341176, 1, 0, 0, 0, 1)
@@ -161,6 +166,26 @@ colors = PackedColorArray(0, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_2whn1"]
 gradient = SubResource("Gradient_cma7p")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_052nx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("30_usbst")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_uh3ed")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_hlqjr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_l2vhu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_4qkp8")
@@ -495,10 +520,18 @@ autoplay = true
 expand = true
 
 [node name="Fade" type="Sprite2D" parent="."]
+visible = false
 z_index = 4095
 position = Vector2(582, 328)
 scale = Vector2(5.890625, 895.5)
 texture = SubResource("GradientTexture1D_2whn1")
+
+[node name="SuperFish" type="AnimatedSprite2D" parent="."]
+position = Vector2(616, 575)
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_052nx")
+frame_progress = 0.08443638
+script = ExtResource("34_uh3ed")
 
 [connection signal="ready" from="Player" to="Player" method="_on_ready"]
 [connection signal="area_entered" from="Player/Area2D" to="Player" method="_on_area_2d_area_entered"]
