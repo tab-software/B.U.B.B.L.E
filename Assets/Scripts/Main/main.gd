@@ -85,13 +85,15 @@ func reset():
 var fadeTween
 
 func _on_video_finished():
-	$VideoPlayer.modulate = 0
+	$VideoPlayer.modulate.a = 0
 	fadeTween = create_tween()
 	fadeTween.tween_property(
 		$Fade, "modulate:a", 0.0, 2.0
 	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
 func _ready() -> void:
+	levelProgress = 0.0
+	backgroundUpdate()
 	trashPrefab = preload("res://Assets/Prefabs/Trash/Box.tscn")
 	fishPrefab = preload("res://Assets/Prefabs/Fish/Fish.tscn")
 	#onGame = true
@@ -109,8 +111,10 @@ func _process(_delta: float) -> void:
 		self.backgroundUpdate()
 		self.progressBarUpdate()
 	else:
-		if not $MainTitleScreen/Box.get_meta("enabled"):#On shoot
-			play()
+		if has_node("MainTitleScreen/Box"):
+			if not $MainTitleScreen/Box.get_meta("enabled"):#On shoot
+				play()
+
 	if self.levelProgress:
 		if (self.levelProgress >= 0.1) and not self.octopusFlag:
 			self.octopusFlag = true
@@ -118,5 +122,30 @@ func _process(_delta: float) -> void:
 		if (self.levelProgress >= 0.8) and not self.superFishFlag:
 			self.superFishFlag = true
 			$SuperFish.activate()
-		if (self.levelProgress >= 1.0):
-			pass
+		if self.levelProgress >= 1.0 and self.onGame:
+			self.levelProgress = null
+			self.onGame = false
+			end_game()
+
+func end_game() -> void:
+	$Fade.modulate.a = 0.0
+	$Fade.visible = true
+	self.fadeTween = create_tween()
+	self.fadeTween.tween_property(
+		$Fade, "modulate:a", 1.0, 2.0
+	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	print("adsa")
+	await fadeTween.finished
+
+	var stream: VideoStream = load("res://Assets/Videos/Fin.ogv")
+	$VideoPlayer.stream = stream
+	$VideoPlayer.modulate.a = 1.0
+	$VideoPlayer.visible = true
+	$VideoPlayer.stop()
+	$VideoPlayer.stream_position = 0.0
+	$VideoPlayer.play()
+	await $VideoPlayer.finished
+	var tree = get_tree()
+	if tree.current_scene:
+		tree.current_scene.queue_free()
+	tree.change_scene_to_file("res://Assets/Scenes/main.tscn")

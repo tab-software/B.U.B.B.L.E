@@ -17,5 +17,5 @@ func _physics_process(delta: float) -> void:
 		self.global_position += velocity
 		if ((velocity.x > 0) and (not isLookAtRight)) or ((velocity.x < 0) and (isLookAtRight)):
 			scale.x = -1
-			isLookAtRight = not isLookAtRight;
+			isLookAtRight = not isLookAtRight
 	self.global_position += linearVel * delta
